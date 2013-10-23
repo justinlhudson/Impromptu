@@ -9,11 +9,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 
-[assembly : AssemblyTitle("Tools")]
+[assembly: AssemblyTitle("Impromptu")]
 [assembly : AssemblyDescription("")]
 [assembly : AssemblyConfiguration("")]
 [assembly : AssemblyCompany("Computerized Development Solutions LLC, U.S.A")]
-[assembly : AssemblyProduct("Tools")]
+[assembly: AssemblyProduct("Impromptu")]
 [assembly : AssemblyCopyright("Copyright © Computerized Development Solutions LLC 2009, U.S.A")]
 [assembly : AssemblyTrademark("")]
 [assembly : AssemblyCulture("")]
