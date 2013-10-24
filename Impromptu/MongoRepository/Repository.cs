@@ -11,6 +11,7 @@ using MongoDB.Driver.Linq;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Serializers;
 using MongoDB.Bson.Serialization.Options;
+using Inflector;
 
 namespace Impromptu.MongoRepository
 {
@@ -78,7 +79,7 @@ namespace Impromptu.MongoRepository
 
             if(string.IsNullOrEmpty(collectionName))
                 throw new ArgumentException("Collection name cannot be empty for this entity");
-            return collectionName;
+            return collectionName.Pluralize();
         }
 
         private static string GetCollectionNameFromInterface<T>()
@@ -97,7 +98,7 @@ namespace Impromptu.MongoRepository
                 collectionname = typeof(T).Name;
             }
 
-            return collectionname;
+            return collectionname.Pluralize();
         }
 
         private static string GetCollectionNameFromType(Type entitytype)
@@ -119,7 +120,7 @@ namespace Impromptu.MongoRepository
                 collectionname = entitytype.Name;
             }
 
-            return collectionname;
+            return collectionname.Pluralize();
         }
     }
 }
