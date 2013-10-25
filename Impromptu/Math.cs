@@ -29,13 +29,13 @@ namespace Impromptu
                 dynamic a = temp[count / 2 - 1];
                 dynamic b = temp[count / 2];
                 object result = ((a + b) / 2);
-                return Common.Cast<T>(result);
+                return result.Cast<T>();
             }
             else
             {
                 // count is odd, return the middle element
                 object result = (temp[count / 2]);
-                return Common.Cast<T>(result);
+                return result.Cast<T>();
             }
         }
 
@@ -61,7 +61,7 @@ namespace Impromptu
                 s += temp[i];
 
             object result = (s / (end - start));
-            return Common.Cast<T>(result);
+            return result.Cast<T>();
         }
 
         public static T Variance<T>(this IEnumerable<T> source)
@@ -94,7 +94,7 @@ namespace Impromptu
                 n -= 1;
 
             object result = (variance / (n));
-            return Common.Cast<T>(result);
+            return result.Cast<T>();
         }
 
         public static double[][] Normalize(double[][] values, double min, double max)
