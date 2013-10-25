@@ -52,10 +52,21 @@ namespace Impromptu
     }
     #endregion
     /// <summary>
-    ///   Used for most common shared functions
+    ///   Used for most common shared methods
     /// </summary>
     public static class Common
     {
         public static string PathExecuting { get { return Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location); } }
+
+        /// <summary>
+        /// Change type cast
+        /// </summary>
+        /// <param name="item">item to change</param>
+        /// <typeparam name="T">change type to</typeparam>
+        /// <remarks>Result of wanted to do dynamic cast using type of object</remarks>
+        public static T Cast<T>(object item)
+        {
+            return (T)Convert.ChangeType(item, typeof(T));
+        }
     }
 }
