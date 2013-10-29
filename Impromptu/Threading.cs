@@ -5,12 +5,12 @@ namespace Impromptu
 {
     public static class Threading
     {
-        public static bool TryExecute(TimeSpan timeout, Action action)
+        public static bool TryExecute(TimeSpan timeout, Action action, bool abort = true)
         {
             var thread = new Thread(() => action());
             thread.Start();
             var completed = thread.Join(timeout);
-            if(!completed)
+            if(!completed && abort)
                 thread.Abort();
             return completed;
         }
