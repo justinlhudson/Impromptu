@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace Impromptu
 {
@@ -34,6 +35,11 @@ namespace Impromptu
             const int EPSILON = 1000;
             var result = System.Math.Abs(System.Math.Abs((dateTime1 - dateTime2).TotalMilliseconds)) < EPSILON;
             return result;
+        }
+
+        public static DateTime Closest(this DateTime[] datetimes, DateTime nearest)
+        {
+            return datetimes.OrderBy(t => System.Math.Abs((t - nearest).Ticks)).FirstOrDefault;
         }
 
         #endregion
