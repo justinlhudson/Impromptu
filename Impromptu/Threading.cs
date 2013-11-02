@@ -6,7 +6,7 @@ namespace Impromptu
 {
     public static class Threading
     {
-        public static bool TryExecute(TimeSpan timeout, Action action, bool abort = true, bool surpressExceptions = true)
+        public static bool TryExecute(TimeSpan timeout, Action action, bool abort = true, bool surpressExceptions = false)
         {
             try
             {
