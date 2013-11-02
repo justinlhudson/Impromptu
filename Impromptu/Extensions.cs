@@ -39,7 +39,7 @@ namespace Impromptu
 
         public static DateTime Closest(this DateTime[] datetimes, DateTime nearest)
         {
-            return datetimes.OrderBy(t => System.Math.Abs((t - nearest).Ticks)).FirstOrDefault;
+            return datetimes.OrderBy(t => System.Math.Abs((t - nearest).Ticks)).FirstOrDefault();
         }
 
         #endregion
