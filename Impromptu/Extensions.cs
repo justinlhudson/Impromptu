@@ -5,7 +5,6 @@ namespace Impromptu
 {
     public static class Extensions
     {
-
         #region Public Static Methods
 
         /// <summary>
@@ -30,10 +29,16 @@ namespace Impromptu
             return value != null ? encoding.GetBytes(value) : null;
         }
 
-        public static bool Equals(this DateTime dateTime1, DateTime dateTime2)
+        public static int CompareTo(this DateTime dateTime1, DateTime dateTime2, int epsilon)
         {
-            const int EPSILON = 1000;
-            var result = System.Math.Abs(System.Math.Abs((dateTime1 - dateTime2).TotalMilliseconds)) < EPSILON;
+            var t1 = dateTime1;
+            var t2 = dateTime2;
+
+            var result = 0;
+            if(System.Math.Abs(System.Math.Abs((t1 - t2).TotalMilliseconds)) < epsilon)
+                result = -1;
+            else if(System.Math.Abs(System.Math.Abs((t1 - t2).TotalMilliseconds)) > epsilon)
+                result = 1;
             return result;
         }
 
@@ -43,6 +48,5 @@ namespace Impromptu
         }
 
         #endregion
-
     }
 }

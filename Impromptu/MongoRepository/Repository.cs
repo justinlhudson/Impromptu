@@ -48,6 +48,14 @@ namespace Impromptu.MongoRepository
             }
         }
 
+        public T[] Find<T>(string code) where T : IEntity
+        {
+            var document = BsonSerializer.Deserialize<BsonDocument>(code);
+            var queryDoc = new QueryDocument(document);
+            var cursor = GetCollection<T>().FindAs<T>(queryDoc);
+            return cursor.ToArray();
+        }
+
         public void Delete<T>(T entry) where T : IEntity
         {
             var query = Query<Entity>.EQ(e => e.id, entry.id);
