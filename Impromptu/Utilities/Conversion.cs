@@ -4,31 +4,30 @@ using System;
 using System.Collections.Generic;
 
 #endregion
-namespace Impromptu
+namespace Impromptu.Utilities
 {
     /// <summary>
     ///   Conversion class.
     /// </summary>
     public class Conversion <T>
     {
-
         #region Fields
 
-        private char[] m_delimiter = { ',', '\n' };
-        private char[] m_remove = { ' ', '\t', '\b', '\r' };
+        private char[] _delimiter = { ',', '\n' };
+        private char[] _remove = { ' ', '\t', '\b', '\r' };
 
         #endregion
 
         #region Properties
 
         public char[] Delimiter {
-            get { return m_delimiter; }
-            set { m_delimiter = value; }
+            get { return _delimiter; }
+            set { _delimiter = value; }
         }
 
         public char[] Remove {
-            get { return m_remove; }
-            set { m_remove = value; }
+            get { return _remove; }
+            set { _remove = value; }
         }
 
         #endregion
@@ -58,8 +57,8 @@ namespace Impromptu
             var data = value;
 
             data.Trim();
-            data = data.Trim(m_remove);
-            var split = data.Split(m_delimiter);
+            data = data.Trim(_remove);
+            var split = data.Split(_delimiter);
             result = new double[split.Length];
 
             for(var i = 0; i < split.Length; i++)
@@ -82,7 +81,7 @@ namespace Impromptu
             var data = value;
 
             for(var i = 0; i < data.Length; i++)
-                result += Convert.ToString(data[i]) + m_delimiter[0];
+                result += Convert.ToString(data[i]) + _delimiter[0];
 
             return result;
         }
@@ -90,9 +89,9 @@ namespace Impromptu
         public int[] ToIntArray(string value)
         {
             var data = value;
-            data = data.Trim(m_remove);
+            data = data.Trim(_remove);
 
-            var split = data.Split(m_delimiter);
+            var split = data.Split(_delimiter);
             var result = new int[split.Length];
 
             for(var i = 0; i < split.Length; i++)
@@ -123,6 +122,5 @@ namespace Impromptu
         }
 
         #endregion
-
     }
 }

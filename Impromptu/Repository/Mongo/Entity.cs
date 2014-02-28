@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace Impromptu.MongoRepository
+namespace Impromptu.Repository.Mongo
 {
     /// <summary>
     /// Abstract Entity for all the BusinessEntities.

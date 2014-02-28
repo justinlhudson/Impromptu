@@ -2,7 +2,7 @@ using System;
 using System.Threading;
 using System.Diagnostics;
 
-namespace Impromptu
+namespace Impromptu.Utilities
 {
     public static class Threading
     {

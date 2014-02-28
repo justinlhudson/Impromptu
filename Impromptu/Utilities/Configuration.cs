@@ -1,6 +1,6 @@
 ﻿using System.Configuration;
 
-namespace Impromptu
+namespace Impromptu.Utilities
 {
     public class Configuration
     {

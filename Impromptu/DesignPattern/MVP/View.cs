@@ -1,17 +1,17 @@
-﻿using Impromptu.DesignPattern;
+﻿using Impromptu.Utilities;
 
-namespace Impromptu.MVP
+namespace Impromptu.DesignPattern.MVP
 {
     internal class View
     {
         private readonly PublisherSubscriber m_ps = new PublisherSubscriber();
 
-        public void Subscribe(PublisherSubscriber.UpdateDelegate listener)
+        public void Subscribe(PublisherSubscriber.EventDelegate listener)
         {
             m_ps.Subscribe(listener);
         }
 
-        public void UnSubscribe(PublisherSubscriber.UpdateDelegate listener)
+        public void UnSubscribe(PublisherSubscriber.EventDelegate listener)
         {
             m_ps.UnSubscribe(listener);
         }

@@ -1,18 +1,13 @@
-#region
-
 using System;
-using Impromptu.Collections;
-using Impromptu.DesignPattern;
+using Impromptu.Collection;
 
-#endregion
-namespace Impromptu
+namespace Impromptu.DesignPattern
 {
     /// <summary>
     ///   This class represents an undo and redo history.
     /// </summary>
     public class UndoRedo <T>
     {
-
         #region Fields
 
         private const int DefaultCapacity = 25;
@@ -109,6 +104,5 @@ namespace Impromptu
         }
 
         #endregion
-
     }
 }

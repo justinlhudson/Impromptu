@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System;
 
-namespace Impromptu
+namespace Impromptu.Utilities
 {
     public static class Math
     {

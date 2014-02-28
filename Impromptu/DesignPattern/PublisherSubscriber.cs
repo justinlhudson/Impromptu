@@ -5,18 +5,17 @@
     /// </summary>
     public class PublisherSubscriber
     {
-
         #region Fields
 
-        public delegate void UpdateDelegate();
+        public delegate void EventDelegate();
 
-        public delegate void UpdateDelegateArg(object arg);
+        public delegate void EventDelegateArg(object arg);
 
-        public delegate void UpdateDelegateArgs(object[] args);
+        public delegate void EventDelegateArgs(object[] args);
 
-        private event UpdateDelegate m_event;
-        private event UpdateDelegateArg m_eventArg;
-        private event UpdateDelegateArgs m_eventArgs;
+        private event EventDelegate _event;
+        private event EventDelegateArg _eventArg;
+        private event EventDelegateArgs _eventArgs;
 
         #endregion
 
@@ -25,68 +24,68 @@
         public PublisherSubscriber()
         {
             // not needed, but shows purpose and gives functions to call via virtual methods.
-            Subscribe(new UpdateDelegate(DelegatePointer));
-            Subscribe(new UpdateDelegateArg(DelegatePointer));
-            Subscribe(new UpdateDelegateArgs(DelegatePointer));
+            Subscribe(new EventDelegate(DelegatePointer));
+            Subscribe(new EventDelegateArg(DelegatePointer));
+            Subscribe(new EventDelegateArgs(DelegatePointer));
         }
 
         #endregion
 
         #region Public Methods
 
-        public void Subscribe(UpdateDelegate listener)
+        public void Subscribe(EventDelegate listener)
         {
             if(listener != null)
-                m_event += listener;
+                _event += listener;
         }
 
-        public void UnSubscribe(UpdateDelegate listener)
+        public void UnSubscribe(EventDelegate listener)
         {
             if(listener != null)
-                m_event -= listener;
+                _event -= listener;
         }
 
-        public void Subscribe(UpdateDelegateArg listener)
+        public void Subscribe(EventDelegateArg listener)
         {
             if(listener != null)
-                m_eventArg += listener;
+                _eventArg += listener;
         }
 
-        public void UnSubscribe(UpdateDelegateArg listener)
+        public void UnSubscribe(EventDelegateArg listener)
         {
             if(listener != null)
-                m_eventArg -= listener;
+                _eventArg -= listener;
         }
 
-        public void Subscribe(UpdateDelegateArgs listener)
+        public void Subscribe(EventDelegateArgs listener)
         {
             if(listener != null)
-                m_eventArgs += listener;
+                _eventArgs += listener;
         }
 
-        public void UnSubscribe(UpdateDelegateArgs listener)
+        public void UnSubscribe(EventDelegateArgs listener)
         {
             if(listener != null)
-                m_eventArgs -= listener;
+                _eventArgs -= listener;
         }
 
         public void Publish()
         {
-            var evtCopy = m_event;
+            var evtCopy = _event;
             if(evtCopy != null)
                 evtCopy();
         }
 
         public void Publish(object arg)
         {
-            var evtCopy = m_eventArg;
+            var evtCopy = _eventArg;
             if(evtCopy != null)
                 evtCopy(arg);
         }
 
         public void Publish(object[] args)
         {
-            var evtCopy = m_eventArgs;
+            var evtCopy = _eventArgs;
             if(evtCopy != null)
                 evtCopy(args);
         }
@@ -108,6 +107,5 @@
         }
 
         #endregion
-
     }
 }

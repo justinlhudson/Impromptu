@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Linq;
 
-namespace Impromptu.Comparer
+namespace Impromptu.Compare
 {
     public class Compare
     {

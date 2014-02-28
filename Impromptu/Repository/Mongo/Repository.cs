@@ -1,3 +1,7 @@
+/// <Fork>
+/// http://mongorepository.codeplex.com/
+/// </Fork>
+
 using System;
 using System.Configuration;
 using System.Collections.Generic;
@@ -13,7 +17,7 @@ using MongoDB.Bson.Serialization.Serializers;
 using MongoDB.Bson.Serialization.Options;
 using Inflector;
 
-namespace Impromptu.MongoRepository
+namespace Impromptu.Repository.Mongo
 {
     public class Repository
     {
@@ -48,12 +52,12 @@ namespace Impromptu.MongoRepository
             }
         }
 
-        public T[] Find<T>(string code) where T : IEntity
+        public IEnumerable<T> Find<T>(string code, int limit = int.MaxValue) where T : IEntity
         {
             var document = BsonSerializer.Deserialize<BsonDocument>(code);
             var queryDoc = new QueryDocument(document);
-            var cursor = GetCollection<T>().FindAs<T>(queryDoc);
-            return cursor.ToArray();
+            var cursor = GetCollection<T>().FindAs<T>(queryDoc).SetLimit(limit);
+            return cursor as IEnumerable<T>;
         }
 
         public void Delete<T>(T entry) where T : IEntity

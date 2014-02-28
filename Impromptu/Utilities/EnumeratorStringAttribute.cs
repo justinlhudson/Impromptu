@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Impromptu
+namespace Impromptu.Utilities
 {
-    public static class EnumStringAttribute
+    public static class EnumeratorStringAttribute
     {
         public static string GetStringValue(Enum value)
         {

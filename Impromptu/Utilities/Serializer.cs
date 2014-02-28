@@ -1,7 +1,7 @@
 using System.Xml.Serialization;
 using System.IO;
 
-namespace Impromptu
+namespace Impromptu.Utilities
 {
     public static class Serializer
     {

@@ -19,17 +19,16 @@ namespace Impromptu.DesignPattern
     /// <typeparam name = "T"></typeparam>
     public class Mementos <T> : IMemento<T>
     {
-
         #region Fields
 
-        private readonly List<IMemento<T>> m_mementos = new List<IMemento<T>>();
+        private readonly List<IMemento<T>> _mementos = new List<IMemento<T>>();
 
         #endregion
 
         #region Properties
 
         public int Size {
-            get { return m_mementos.Count; }
+            get { return _mementos.Count; }
         }
 
         #endregion
@@ -49,17 +48,16 @@ namespace Impromptu.DesignPattern
         {
             var inverse = new Mementos<T>();
             // starts from the last action
-            for(var i = m_mementos.Count - 1; i >= 0; i--)
-                inverse.Add(m_mementos[i].Restore(value));
+            for(var i = _mementos.Count - 1; i >= 0; i--)
+                inverse.Add(_mementos[i].Restore(value));
             return inverse;
         }
 
         public void Add(IMemento<T> memento)
         {
-            m_mementos.Add(memento);
+            _mementos.Add(memento);
         }
 
         #endregion
-
     }
 }

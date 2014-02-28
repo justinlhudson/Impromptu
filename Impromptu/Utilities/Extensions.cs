@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace Impromptu
+namespace Impromptu.Utilities
 {
     public static class Extensions
     {

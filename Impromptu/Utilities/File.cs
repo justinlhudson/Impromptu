@@ -4,7 +4,7 @@ using System.Data;
 using System.Data.OleDb;
 using System.IO;
 
-namespace Impromptu
+namespace Impromptu.Utilities
 {
     public class File
     {

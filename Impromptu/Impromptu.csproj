@@ -3,8 +3,6 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>10.0.20506</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{4E6DFAAF-9CC5-46EE-AD27-AA67CC43FD82}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -66,9 +64,7 @@
       <HintPath>..\packages\mongocsharpdriver.1.8.3\lib\net35\MongoDB.Driver.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Core">
-      <RequiredTargetFramework>4.5</RequiredTargetFramework>
-    </Reference>
+    <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Transactions" />
@@ -82,37 +78,50 @@
       <HintPath>..\packages\Microsoft.NET\Framework64\v4.0.30319\Microsoft.CSharp.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.Caching" />
+    <Reference Include="ServiceStack.Interfaces">
+      <HintPath>..\..\..\development\StockMarket\packages\ServiceStack.Interfaces.4.0.11\lib\net40\ServiceStack.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Text">
+      <HintPath>..\..\..\development\StockMarket\packages\ServiceStack.Text.Signed.4.0.11\lib\net40\ServiceStack.Text.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Common">
+      <HintPath>..\..\..\development\StockMarket\packages\ServiceStack.Common.Signed.4.0.11\lib\net40\ServiceStack.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Redis">
+      <HintPath>..\..\..\development\StockMarket\packages\ServiceStack.Redis.Signed.4.0.11\lib\net40\ServiceStack.Redis.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Collections\PriorityQueue.cs" />
-    <Compile Include="Collections\RoundStack.cs" />
-    <Compile Include="Comparer\InvertedComparer.cs" />
-    <Compile Include="Configuration.cs" />
     <Compile Include="DesignPattern\Command.cs" />
-    <Compile Include="Comparer\Compare.cs" />
     <Compile Include="DesignPattern\Memento.cs" />
-    <Compile Include="Copy.cs" />
-    <Compile Include="EnvironmentVariable.cs" />
     <Compile Include="Common.cs" />
-    <Compile Include="Conversion.cs" />
-    <Compile Include="EnumStringAttribute.cs" />
-    <Compile Include="Extensions.cs" />
     <Compile Include="DesignPattern\PublisherSubscriber.cs" />
-    <Compile Include="MVP\Presenter.cs" />
-    <Compile Include="MVP\IView.cs" />
-    <Compile Include="MVP\Model.cs" />
-    <Compile Include="MVP\View.cs" />
-    <Compile Include="Math.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UndoRedo.cs" />
-    <Compile Include="MongoRepository\Entity.cs" />
-    <Compile Include="MongoRepository\Repository.cs" />
-    <Compile Include="MongoRepository\CollectionName.cs" />
-    <Compile Include="Serializer.cs" />
-    <Compile Include="MongoRepository\IEntity.cs" />
     <Compile Include="MachineLearning\Discretizer.cs" />
-    <Compile Include="Threading.cs" />
-    <Compile Include="File.cs" />
+    <Compile Include="Repository\Mongo\CollectionName.cs" />
+    <Compile Include="Repository\Mongo\Entity.cs" />
+    <Compile Include="Repository\Mongo\IEntity.cs" />
+    <Compile Include="Repository\Mongo\Repository.cs" />
+    <Compile Include="DesignPattern\UndoRedo.cs" />
+    <Compile Include="Utilities\Configuration.cs" />
+    <Compile Include="Utilities\Conversion.cs" />
+    <Compile Include="Utilities\Copy.cs" />
+    <Compile Include="Utilities\EnvironmentVariable.cs" />
+    <Compile Include="Utilities\Extensions.cs" />
+    <Compile Include="Utilities\File.cs" />
+    <Compile Include="Utilities\Math.cs" />
+    <Compile Include="Utilities\Serializer.cs" />
+    <Compile Include="Utilities\Threading.cs" />
+    <Compile Include="Messaging\Redis\PublishSubscribe.cs" />
+    <Compile Include="Compare\Compare.cs" />
+    <Compile Include="Compare\InvertedComparer.cs" />
+    <Compile Include="Collection\PriorityQueue.cs" />
+    <Compile Include="Collection\RoundStack.cs" />
+    <Compile Include="DesignPattern\MVP\IView.cs" />
+    <Compile Include="DesignPattern\MVP\Model.cs" />
+    <Compile Include="DesignPattern\MVP\Presenter.cs" />
+    <Compile Include="DesignPattern\MVP\View.cs" />
+    <Compile Include="Utilities\EnumeratorStringAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -141,9 +150,14 @@
   </Target>
   -->
   <ItemGroup>
-    <None Include="MongoRepository\ReadMe.txt" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Repository\Mongo\" />
+    <Folder Include="Utilities\" />
+    <Folder Include="Messaging\" />
+    <Folder Include="Messaging\Redis\" />
+  </ItemGroup>
 </Project>

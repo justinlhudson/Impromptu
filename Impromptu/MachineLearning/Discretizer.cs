@@ -1,13 +1,13 @@
 using System;
 using System.Collections.Generic;
 
-/// <summary>
+/// <Fork>
 /// Test Run
 /// Converting Numeric Data to Categorical Data
 /// James McCaffrey
 /// 
 /// http://msdn.microsoft.com/en-us/magazine/dn342876.aspx
-/// </summary>
+/// </Fork>
 public class Discretizer
 {
     private double[] data;

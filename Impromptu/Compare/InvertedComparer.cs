@@ -2,15 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 
-namespace Impromptu.Comparer
+namespace Impromptu.Compare
 {
     public class InvertedComparer <T> : Comparer<T>
     {
-
         #region Fields
 
-        private static InvertedComparer<T> m_defaultComparer;
-        private readonly IComparer<T> m_comparer;
+        private static InvertedComparer<T> _defaultComparer;
+        private readonly IComparer<T> _comparer;
 
         #endregion
 
@@ -18,9 +17,9 @@ namespace Impromptu.Comparer
 
         public new static InvertedComparer<T> Default {
             get {
-                if(m_defaultComparer == null)
-                    Interlocked.CompareExchange(ref m_defaultComparer, new InvertedComparer<T>(Comparer<T>.Default), null); //make atomic operation
-                return m_defaultComparer;
+                if(_defaultComparer == null)
+                    Interlocked.CompareExchange(ref _defaultComparer, new InvertedComparer<T>(Comparer<T>.Default), null); //make atomic operation
+                return _defaultComparer;
             }
         }
 
@@ -32,7 +31,7 @@ namespace Impromptu.Comparer
         {
             if(comparer == null)
                 throw new ArgumentNullException("comparer");
-            m_comparer = comparer;
+            _comparer = comparer;
         }
 
         #endregion
@@ -42,10 +41,9 @@ namespace Impromptu.Comparer
         public override int Compare(T x, T y)
         {
             // Reverse the arguments to get the inverted result.
-            return m_comparer.Compare(y, x);
+            return _comparer.Compare(y, x);
         }
 
         #endregion
-
     }
 }

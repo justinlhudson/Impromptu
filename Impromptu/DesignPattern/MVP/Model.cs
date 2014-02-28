@@ -1,4 +1,4 @@
-﻿namespace Impromptu.MVP
+﻿namespace Impromptu.DesignPattern.MVP
 {
     /*
      * Model:

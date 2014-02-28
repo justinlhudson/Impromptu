@@ -1,6 +1,6 @@
 ﻿using Impromptu.DesignPattern;
 
-namespace Impromptu.MVP
+namespace Impromptu.DesignPattern.MVP
 {
     /*
      * View:
@@ -10,8 +10,8 @@ namespace Impromptu.MVP
      */
     internal interface IView
     {
-        void Subscribe(PublisherSubscriber.UpdateDelegate listener);
+        void Subscribe(PublisherSubscriber.EventDelegate listener);
 
-        void UnSubscribe(PublisherSubscriber.UpdateDelegate listener);
+        void UnSubscribe(PublisherSubscriber.EventDelegate listener);
     }
 }

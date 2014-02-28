@@ -1,6 +1,6 @@
 using System;
 
-namespace Impromptu.MongoRepository
+namespace Impromptu.Repository.Mongo
 {
     /// <summary>
     /// Attribute used to annotate Enities with to override mongo collection name. By default, when this attribute

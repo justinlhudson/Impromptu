@@ -1,6 +1,6 @@
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace Impromptu.MongoRepository
+namespace Impromptu.Repository.Mongo
 {
     /// <summary>
     /// Entity interface.
