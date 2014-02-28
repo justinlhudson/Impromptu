@@ -13,8 +13,6 @@ namespace Impromptu.Messaging.Redis.PublishSubscribe
         private readonly RedisClient _client;
         private readonly IRedisSubscription _subscription;
 
-        public int Number { get ; private set; }
-
         public PublishSubscribe(string host = "localhost", int port = 6379, string password = null, long db = 0) // defaults
         {
             _client = new RedisClient(host, port, password, db);
@@ -22,17 +20,17 @@ namespace Impromptu.Messaging.Redis.PublishSubscribe
 
             _subscription.OnMessage = (channel, message) =>
             {
-                var value = Serializer.Deserialize<object>(message);
+                var value = Serializer.String.Deserialize<object>(message);
 
                 var evtCopy = OnMessage;
                 if(evtCopy != null)
                     evtCopy(channel, value);
-            };                
+            };                               
         }
 
         void Publish(string channel, object value)
         {
-            var temp = Serializer.Serialize<object>(value);
+            var temp = Serializer.String.Serialize<object>(value);
             _client.PublishMessage(channel, temp);
         }
 
