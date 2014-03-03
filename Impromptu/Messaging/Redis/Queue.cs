@@ -10,7 +10,13 @@ namespace Impromptu.Messaging.Redis
 
         public Queue(string host = "localhost", int port = 6379, string password = null, long db = 0) // defaults
         {
-            _client = new RedisClient(host, port, password, db);           
+            _client = new RedisClient(host, port, password, db);                          
+        }
+
+        public void Flush(string list)
+        {
+            while(Pop<object>(list) != null)
+                ;
         }
 
         public long Length(string list)
