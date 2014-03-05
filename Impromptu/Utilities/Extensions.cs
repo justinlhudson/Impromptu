@@ -29,6 +29,12 @@ namespace Impromptu.Utilities
             return value != null ? encoding.GetBytes(value) : null;
         }
 
+        public static DateTime UTCToLocal(this DateTime utc)
+        {
+            var localTime = TimeZoneInfo.ConvertTimeFromUtc(utc, TimeZoneInfo.Local);
+            return localTime;
+        }
+
         public static int CompareTo(this DateTime dateTime1, DateTime dateTime2, int epsilon)
         {
             var t1 = dateTime1;
