@@ -135,6 +135,7 @@
     <Compile Include="DesignPattern\MVP\View.cs" />
     <Compile Include="Utilities\EnumeratorStringAttribute.cs" />
     <Compile Include="Messaging\Redis\Queue.cs" />
+    <Compile Include="Messaging\Redis\Storage.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

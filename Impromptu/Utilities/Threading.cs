@@ -1,11 +1,17 @@
 using System;
 using System.Threading;
 using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace Impromptu.Utilities
 {
     public static class Threading
     {
+        public static ParallelOptions ParallelOptionsDefault()
+        {
+            return new ParallelOptions(){ MaxDegreeOfParallelism = Environment.ProcessorCount - 1 };
+        }
+
         public static bool TryExecute(TimeSpan timeout, Action action, bool abort = true, bool surpressExceptions = false)
         {
             try
