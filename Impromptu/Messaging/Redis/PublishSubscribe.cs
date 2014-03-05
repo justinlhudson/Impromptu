@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Impromptu.Messaging.Redis
 {
-    public class PublishSubscribe : IDisposable
+    public class PublishSubscribe : RedisBase, IDisposable
     {
         public delegate void Message(string channel, object value);
 
@@ -16,13 +16,13 @@ namespace Impromptu.Messaging.Redis
         private readonly IRedisSubscription _subscription;
         private Thread _blocking;
 
-        public PublishSubscribe(string host = "localhost", int port = 6379, string password = null, long db = 0, bool publishToSelf = true) // defaults
+        public PublishSubscribe(string host = "localhost", int port = 6379, string password = null, long db = 0, bool publishToSelf = true) : base(host, port, password, db)
         {
-            _client.Add(new RedisClient(host, port, password, db));
+            _client.Add(RedisClient);
             _subscription = _client[0].CreateSubscription();
 
             if(publishToSelf)
-                _client.Add(new RedisClient(host, port, password, db));
+                _client.Add((new RedisBase(host, port, password, db)).RedisClient);
 
             _subscription.OnSubscribe = channel =>
             {
