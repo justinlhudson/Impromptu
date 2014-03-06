@@ -11,6 +11,15 @@ namespace Impromptu.Messaging.Redis
 
         public RedisBase(string host = "localhost", int port = 6379, string password = null, long db = 0) // defaults
         {
+
+            if(host.Contains(":"))
+            {
+                // should throw if messed up so no checking done here
+                var split = host.Split(new[]{ ':' });
+                host = split[0];
+                port = (int)Convert.ToInt64(split[1]);
+            }
+
             _client = new RedisClient(host, port, password, db);                          
         }
     }

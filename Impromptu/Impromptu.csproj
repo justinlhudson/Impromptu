@@ -137,6 +137,7 @@
     <Compile Include="Messaging\Redis\Queue.cs" />
     <Compile Include="Messaging\Redis\Storage.cs" />
     <Compile Include="Messaging\Redis\RedisBase.cs" />
+    <Compile Include="Utilities\Helper.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
