@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Linq;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
 
 namespace Impromptu.Utilities
 {
@@ -27,6 +29,14 @@ namespace Impromptu.Utilities
         {
             var encoding = new System.Text.UTF8Encoding();
             return value != null ? encoding.GetBytes(value) : null;
+        }
+
+        public static List<T> ToList<T>(this ConcurrentBag<T> bag)
+        {
+            var result = new List<T>();
+            foreach(var item in bag.ToArray())
+                result.Add(item);
+            return result.ToList();
         }
 
         public static DateTime UTCToLocal(this DateTime utc)
