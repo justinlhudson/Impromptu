@@ -9,7 +9,7 @@ namespace Impromptu.Utilities
     {
         public static ParallelOptions ParallelOptionsDefault()
         {
-            return new ParallelOptions(){ MaxDegreeOfParallelism = Environment.ProcessorCount - 1 };
+            return new ParallelOptions(){ MaxDegreeOfParallelism = Environment.ProcessorCount };
         }
 
         public static bool TryExecute(TimeSpan timeout, Action action, bool abort = true, bool surpressExceptions = false)
