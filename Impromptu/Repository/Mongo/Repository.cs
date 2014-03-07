@@ -42,9 +42,6 @@ namespace Impromptu.Repository.Mongo
                     Server.DropDatabase(mongoUrl.DatabaseName);
 
                 Database = Server.GetDatabase(mongoUrl.DatabaseName);	   
-
-                //if(!Server.DatabaseExists(mongoUrl.DatabaseName))
-                //    throw new NotImplementedException("Missing database: " + mongoUrl.DatabaseName);
             }
             catch(Exception)
             {
