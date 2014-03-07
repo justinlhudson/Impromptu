@@ -167,6 +167,12 @@
   -->
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Docker\base\Dockerfile" />
+    <None Include="Docker\base\mono-3.sh" />
+    <None Include="Docker\base\setup.sh" />
+    <None Include="Docker\base\sources.list" />
+    <None Include="Docker\base\supervisord.conf" />
+    <None Include="Docker\base\base.sh" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup />
@@ -175,5 +181,6 @@
     <Folder Include="Utilities\" />
     <Folder Include="Messaging\" />
     <Folder Include="Messaging\Redis\" />
+    <Folder Include="Docker\" />
   </ItemGroup>
 </Project>

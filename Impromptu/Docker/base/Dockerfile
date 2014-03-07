@@ -1,0 +1,31 @@
+FROM ubuntu:latest
+
+MAINTAINER comp-ds
+
+RUN echo "root:root" | chpasswd
+
+# Workaround for upstart errors
+#RUN dpkg-divert --local --rename --add /sbin/initctl;ln -s /bin/true /sbin/initctl || true
+
+# Allow it to work regardless of locale/language set on the users machine
+RUN locale-gen en_US en_US.UTF-8 && dpkg-reconfigure locales
+
+ADD sources.list /etc/apt/sources.list
+RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 3E5C1192
+
+RUN mkdir -p /var/run/sshd; mkdir -p /var/log/supervisor
+
+RUN apt-get update -y; apt-get install sudo openssh-server supervisor -y
+RUN apt-get update -y; apt-get upgrade -y; apt-get dist-upgrade -y; apt-get autoremove -y -f; apt-get autoclean -y -f
+
+# Service(s)
+ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
+# Setup
+# Note: doing all in one command is less container commits
+# Remarks: can easily add to setup.sh to expand
+ADD mono-3.sh /tmp/mono-3.sh
+ADD setup.sh /tmp/setup.sh
+RUN chmod +x /tmp/setup.sh; chown root:root /tmp/setup.sh; /tmp/setup.sh
+
+CMD ["/usr/bin/supervisord"]
