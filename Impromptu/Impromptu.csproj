@@ -168,11 +168,15 @@
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="Docker\base\Dockerfile" />
-    <None Include="Docker\base\mono-3.sh" />
     <None Include="Docker\base\setup.sh" />
     <None Include="Docker\base\sources.list" />
     <None Include="Docker\base\supervisord.conf" />
-    <None Include="Docker\base\run.sh" />
+    <None Include="Docker\development\Dockerfile" />
+    <None Include="Docker\development\mono-3.sh" />
+    <None Include="Docker\development\setup.sh" />
+    <None Include="Docker\development\sources.list" />
+    <None Include="Docker\development\supervisord.conf" />
+    <None Include="Docker\run.sh" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup />
@@ -182,5 +186,6 @@
     <Folder Include="Messaging\" />
     <Folder Include="Messaging\Redis\" />
     <Folder Include="Docker\" />
+    <Folder Include="Docker\development\" />
   </ItemGroup>
 </Project>

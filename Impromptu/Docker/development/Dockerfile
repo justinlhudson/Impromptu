@@ -23,6 +23,8 @@ ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Setup
 # Note: doing all in one command is less container commits
+# Remarks: can easily add to setup.sh to expand
+ADD mono-3.sh /tmp/mono-3.sh
 ADD setup.sh /tmp/setup.sh
 RUN chmod +x /tmp/setup.sh; chown root:root /tmp/setup.sh; /tmp/setup.sh
 
