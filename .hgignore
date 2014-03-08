@@ -1,8 +1,0 @@
-syntax: glob
-*.user
-*.suo
-*.vsmdi
-.hgignore
-*.testsettings
-*.dll
-_ReSharper.*
