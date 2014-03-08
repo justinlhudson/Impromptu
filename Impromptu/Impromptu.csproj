@@ -178,6 +178,12 @@
     <None Include="Docker\development\supervisord.conf" />
     <None Include="Docker\development\run.sh" />
     <None Include="Docker\base\run.sh" />
+    <None Include="Docker\torified\Dockerfile" />
+    <None Include="Docker\torified\config" />
+    <None Include="Docker\torified\run.sh" />
+    <None Include="Docker\torified\sources.list" />
+    <None Include="Docker\torified\supervisord.conf" />
+    <None Include="Docker\torified\torrc" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup />
@@ -188,5 +194,6 @@
     <Folder Include="Messaging\Redis\" />
     <Folder Include="Docker\" />
     <Folder Include="Docker\development\" />
+    <Folder Include="Docker\torified\" />
   </ItemGroup>
 </Project>
