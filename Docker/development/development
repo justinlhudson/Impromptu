@@ -8,13 +8,8 @@
 # 	-import 
 # 	-export
 
-if [ "$(id -u)" != "0" ]; then
-    echo "ERROR: Must be run with root privileges (i.e. sudo)"
-    exit 1
-fi
-
 HOST=$(hostname)
-IMAGE="$1"
+IMAGE="development"
 CONTAINER="$IMAGE"_container
 
 # Wait for docker
@@ -66,10 +61,14 @@ if [ ! -d /docker ]; then
   mkdir -p /docker
 fi
 
-volumes="-v /docker:/docker"
+if [ ! -d /var/lib/mongodb ]; then
+  mkdir -p /var/lib/mongodb
+fi
 
-# Ports
-ports=""
+volumes="-v /docker:/docker -v /var/lib/mongodb:/var/lib/mongodb"
+
+# Ports (redis, mongodb)
+ports="-p 56379:6379 -p 57017:27017"
 
 docker stop $CONTAINER > /dev/null 2>&1
 docker rm $CONTAINER > /dev/null 2>&1
