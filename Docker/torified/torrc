@@ -96,8 +96,8 @@ ORPort 9001
 ## Define these to limit how much relayed traffic you will allow. Your
 ## own traffic is still unthrottled. Note that RelayBandwidthRate must
 ## be at least 20 KB.
-RelayBandwidthRate 50 KB  # Throttle traffic to 100KB/s (800Kbps)
-RelayBandwidthBurst 100 KB # But allow bursts up to 200KB/s (1600Kbps)
+#RelayBandwidthRate 100 KB  # Throttle traffic to 100KB/s (800Kbps)
+#RelayBandwidthBurst 200 KB # But allow bursts up to 200KB/s (1600Kbps)
 
 ## Use these to restrict the maximum traffic per day, week, or month.
 ## Note that this threshold applies to sent _and_ to received bytes,
@@ -105,7 +105,7 @@ RelayBandwidthBurst 100 KB # But allow bursts up to 200KB/s (1600Kbps)
 ## total before hibernating.
 ##
 ## Set a maximum of 4 gigabytes each way per period.
-AccountingMax 1 GB
+#AccountingMax 4 GB
 ## Each period starts daily at midnight (AccountingMax is per day)
 AccountingStart day 00:00
 ## Each period starts on the 3rd of the month at 15:00 (AccountingMax

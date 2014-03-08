@@ -19,7 +19,7 @@ while [ ! -e $docker_lock ] ; do
   inotifywait -t 2 -e create $(dirname $docker_lock)
 done
 
-while getopts "cbsei" opt ${@:2}; do
+while getopts "cbsei" opt; do
   case $opt in
   	c)
       echo "Clear: $CONTAINER"

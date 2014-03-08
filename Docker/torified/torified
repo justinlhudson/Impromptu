@@ -19,7 +19,7 @@ while [ ! -e $docker_lock ] ; do
   inotifywait -t 2 -e create $(dirname $docker_lock)
 done
 
-while getopts "cbsei" opt ${@:2}; do
+while getopts "cbsei" opt; do
   case $opt in
   	c)
       echo "Clear: $CONTAINER"
@@ -69,5 +69,7 @@ ports="-p 9001:9001 -p 9030:9030 -p 8118:22"
 docker stop $CONTAINER > /dev/null 2>&1
 docker rm $CONTAINER > /dev/null 2>&1
 PID=$(docker run -d -h $HOST $volumes $ports -name $CONTAINER $IMAGE)
+
+# ssh -L 8118:127.0.0.1:8118 root@127.0.0.1 -P 8118
 
 exit
