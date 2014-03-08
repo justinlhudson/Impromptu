@@ -173,6 +173,7 @@
     <None Include="Docker\base\sources.list" />
     <None Include="Docker\base\supervisord.conf" />
     <None Include="Docker\base\base.sh" />
+    <None Include="Docker\base\run.sh" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup />
