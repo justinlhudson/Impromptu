@@ -13,7 +13,7 @@ RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 3E5C1192
 
 RUN mkdir -p /var/run/sshd; mkdir -p /var/log/supervisor
 
-RUN apt-get update -y; apt-get install vim sudo openssh-server supervisor -y
+RUN apt-get update -y; apt-get install vim sudo cron openssh-server supervisor -y
 RUN apt-get update -y; apt-get upgrade -y; apt-get dist-upgrade -y; apt-get autoremove -y -f; apt-get autoclean -y -f
 
 # Service(s)

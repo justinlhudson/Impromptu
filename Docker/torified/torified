@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [ `whoami` != root ]; then
+    echo Please run this script as root or using sudo
+    exit
+fi
+
 # Wait for docker
 chmod 777 "/var/run/docker.sock"
 docker_lock=/var/run/docker.sock

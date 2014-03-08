@@ -2,7 +2,7 @@
 
 As the name implies, just a bunch of helpers.
 
-## C#
+## C-Sharp
 
 .NET Helpers
 
