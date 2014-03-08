@@ -176,7 +176,8 @@
     <None Include="Docker\development\setup.sh" />
     <None Include="Docker\development\sources.list" />
     <None Include="Docker\development\supervisord.conf" />
-    <None Include="Docker\run.sh" />
+    <None Include="Docker\development\run.sh" />
+    <None Include="Docker\base\run.sh" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup />

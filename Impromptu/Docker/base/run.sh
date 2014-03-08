@@ -66,14 +66,10 @@ if [ ! -d /docker ]; then
   mkdir -p /docker
 fi
 
-if [ ! -d /var/lib/mongodb ]; then
-  mkdir -p /var/lib/mongodb
-fi
+volumes="-v /docker:/docker"
 
-volumes="-v /docker:/docker -v /var/lib/mongodb:/var/lib/mongodb"
-
-# Ports (redis, mongodb)
-ports="-p 56379:6379 -p 57017:27017"
+# Ports
+ports=""
 
 docker stop $CONTAINER > /dev/null 2>&1
 docker rm $CONTAINER > /dev/null 2>&1
