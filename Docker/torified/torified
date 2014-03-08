@@ -71,7 +71,7 @@ while getopts "rdc:bseih" opt; do
       docker stop $CONTAINER > /dev/null 2>&1
       docker rm $CONTAINER > /dev/null 2>&1
       docker rmi $IMAGE > /dev/null 2>&1
-      gzip -dc "$IMAGE".tgz | docker import - $IMAGE      
+      gzip -dc "$CONTAINER".tgz | docker import - $IMAGE       
       ;;
   	h)	 
 	    echo -e "Usage: option(s)
