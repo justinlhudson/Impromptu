@@ -79,28 +79,16 @@
     </Reference>
     <Reference Include="System.Runtime.Caching" />
     <Reference Include="ServiceStack.Interfaces">
-      <HintPath>..\..\..\development\StockMarket\packages\ServiceStack.Interfaces.4.0.11\lib\net40\ServiceStack.Interfaces.dll</HintPath>
+      <HintPath>..\..\..\..\development\StockMarket\packages\ServiceStack.Interfaces.4.0.12\lib\net40\ServiceStack.Interfaces.dll</HintPath>
     </Reference>
     <Reference Include="ServiceStack.Text">
-      <HintPath>..\..\..\development\StockMarket\packages\ServiceStack.Text.4.0.11\lib\net40\ServiceStack.Text.dll</HintPath>
+      <HintPath>..\..\..\..\development\StockMarket\packages\ServiceStack.Text.4.0.12\lib\net40\ServiceStack.Text.dll</HintPath>
     </Reference>
     <Reference Include="ServiceStack.Common">
-      <HintPath>..\..\..\development\StockMarket\packages\ServiceStack.Common.4.0.11\lib\net40\ServiceStack.Common.dll</HintPath>
+      <HintPath>..\..\..\..\development\StockMarket\packages\ServiceStack.Common.4.0.12\lib\net40\ServiceStack.Common.dll</HintPath>
     </Reference>
     <Reference Include="ServiceStack.Redis">
-      <HintPath>..\..\..\development\StockMarket\packages\ServiceStack.Redis.4.0.11\lib\net40\ServiceStack.Redis.dll</HintPath>
-    </Reference>
-    <Reference Include="ServiceStack.Client">
-      <HintPath>..\..\..\development\StockMarket\packages\ServiceStack.Client.4.0.11\lib\net40\ServiceStack.Client.dll</HintPath>
-    </Reference>
-    <Reference Include="ServiceStack">
-      <HintPath>..\..\..\development\StockMarket\packages\ServiceStack.4.0.11\lib\net40\ServiceStack.dll</HintPath>
-    </Reference>
-    <Reference Include="ServiceStack.OrmLite">
-      <HintPath>..\..\..\development\StockMarket\packages\ServiceStack.OrmLite.4.0.11\lib\net40\ServiceStack.OrmLite.dll</HintPath>
-    </Reference>
-    <Reference Include="ServiceStack.Server">
-      <HintPath>..\..\..\development\StockMarket\packages\ServiceStack.Server.4.0.11\lib\net40\ServiceStack.Server.dll</HintPath>
+      <HintPath>..\..\..\..\development\StockMarket\packages\ServiceStack.Redis.4.0.12\lib\net40\ServiceStack.Redis.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
