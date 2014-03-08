@@ -15,23 +15,25 @@ apt-get install -f -y apache2 apache2-threaded-dev
 #aptitude reinstall libmono-corlib2.0-cil
 
 # Structure for source
-mkdir -p /opt/mono-3/mono-latest
-cd /opt/mono-3/mono-latest
+mkdir -p /opt/mono-3/
+cd /opt/mono-3/
 
 # Download source(s)
 git clone git://github.com/mono/libgdiplus.git
 git clone git://github.com/mono/mono.git
 git clone git://github.com/mono/xsp.git
-git clone git://github.com/mono/mod_mono.git
+#git clone https://github.com/mono/gtk-sharp.git
+#git clone https://github.com/mono/gio-sharp.git
+#git clone git://github.com/mono/mod_mono.git
 
 # Compile
-cd /opt/mono-3/mono-latest/libgdiplus
+cd /opt/mono-3/libgdiplus
 git fetch --all
 ./autogen.sh --prefix=/usr/local
 make
 make install
 
-cd /opt/mono-3/mono-latest/mono
+cd /opt/mono-3/mono
 git fetch --all
 ./autogen.sh --prefix=/usr/local
 make
@@ -43,8 +45,20 @@ git fetch --all
 make
 make install
 
-cd /opt/mono-3/mod_mono
-git fetch --all
-./autogen.sh --prefix=/usr/local
-make
-make install
+#cd /opt/mono-3/gtk-sharp
+#git fetch --all
+#./autogen.sh --prefix=/usr/local
+#make
+#make install
+
+#cd /opt/mono-3/gio-sharp
+#git fetch --all
+#./autogen-2.22.sh --prefix=/usr/local
+#make
+#make install
+
+#cd /opt/mono-3/mod_mono
+#git fetch --all
+#./autogen.sh --prefix=/usr/local
+#make
+#make install
