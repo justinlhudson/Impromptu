@@ -27,8 +27,8 @@ done
 while getopts "cbsei" opt ${@:2}; do
   case $opt in
   	c)
-      echo "Clear All Container(s))"
-  	  docker rm $(docker ps -a -q)
+      echo "Clear: $CONTAINER"
+  	  docker rm $CONTAINER
   	  exit
   	  ;;
   	b)

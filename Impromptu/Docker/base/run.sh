@@ -27,34 +27,34 @@ done
 while getopts "cbsei" opt ${@:2}; do
   case $opt in
   	c)
-          echo "Clear All Container(s))"
-  	  docker rm $(docker ps -a -q)
+      echo "Clear: $CONTAINER"
+  	  docker rm $CONTAINER
   	  exit
   	  ;;
   	b)
-          echo "Build: $IMAGE"
+      echo "Build: $IMAGE"
   	  docker build --quiet=false --no-cache=false --rm=false --tag "$IMAGE" .
   	  exit
   	  ;;
   	s)
-          echo "Stop: $CONTAINER"
+      echo "Stop: $CONTAINER"
   	  docker stop $CONTAINER > /dev/null 2>&1
-          exit
-          ;;
-        e)
-          echo "Export: $CONTAINER"
-          docker stop $CONTAINER > /dev/null 2>&1
-          docker export $CONTAINER | gzip -c > $CONTAINER.tgz
-          exit
-          ;;
-        i)
-          echo "Import: $IMAGE"
-          docker stop $CONTAINER > /dev/null 2>&1
-          docker rm $CONTAINER > /dev/null 2>&1
-          docker rmi $IMAGE > /dev/null 2>&1
-          gzip -dc "$IMAGE".tgz | docker import - $IMAGE
-          exit
-          ;;
+      exit
+      ;;
+    e)
+      echo "Export: $CONTAINER"
+      docker stop $CONTAINER > /dev/null 2>&1
+      docker export $CONTAINER | gzip -c > $CONTAINER.tgz
+      exit
+      ;;
+    i)
+      echo "Import: $IMAGE"
+      docker stop $CONTAINER > /dev/null 2>&1
+      docker rm $CONTAINER > /dev/null 2>&1
+      docker rmi $IMAGE > /dev/null 2>&1
+      gzip -dc "$IMAGE".tgz | docker import - $IMAGE
+      exit
+      ;;
   	\?)	 
 	  echo "Usage: "
 	  ;;

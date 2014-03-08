@@ -1,7 +1,5 @@
 FROM ubuntu:latest
 
-MAINTAINER comp-ds
-
 RUN echo "root:root" | chpasswd
 
 # Workaround for upstart errors
