@@ -1,17 +1,5 @@
 #!/bin/bash
 
-# Usage: [name] [option]
-# Options:
-# 	-clean
-# 	-build 
-# 	-stop 
-# 	-import 
-# 	-export
-
-HOST=$(hostname)
-IMAGE="development"
-CONTAINER="$IMAGE"_container
-
 # Wait for docker
 chmod 777 "/var/run/docker.sock"
 docker_lock=/var/run/docker.sock
@@ -19,59 +7,82 @@ while [ ! -e $docker_lock ] ; do
   inotifywait -t 2 -e create $(dirname $docker_lock)
 done
 
-while getopts "cbsei" opt; do
+### CONSTAINTS ###
+
+HOST=$(hostname)
+IMAGE="development"
+CONTAINER="$IMAGE"_container
+
+### Docker run ###
+run() {
+  # shared volumes
+  if [ ! -d /docker ]; then
+    mkdir -p /docker
+  fi
+
+  if [ ! -d /var/lib/mongodb ]; then
+    mkdir -p /var/lib/mongodb
+  fi
+
+  volumes="-v /docker:/docker -v /var/lib/mongodb:/var/lib/mongodb"
+
+  # ports (redis, mongodb)
+  ports="-p 56379:6379 -p 57017:27017"
+
+  docker stop $CONTAINER > /dev/null 2>&1
+  docker rm $CONTAINER > /dev/null 2>&1
+  PID=$(docker run -d -h $HOST $volumes -p 2222:22 $ports -name $CONTAINER $IMAGE "/usr/bin/supervisord")
+}
+
+### Terminal operations ###
+while getopts "rdc:bseih" opt; do
   case $opt in
-  	c)
-      echo "Clear: $CONTAINER"
-  	  docker rm $CONTAINER
-  	  exit
-  	  ;;
-  	b)
+    r)
+      echo "Run: $IMAGE"
+      run
+      ;;
+    d)
+      echo "Delete: $IMAGE"
+      docker rmi $IMAGE
+      ;;    
+    c)
+      echo "Commit: $CONTAINER to $IMAGE"
+      docker stop $CONTAINER > /dev/null 2>&1
+      docker commit -m "$OPTARG" $CONTAINER $IMAGE 
+      ;;
+    b)
       echo "Build: $IMAGE"
-  	  docker build --quiet=false --no-cache=false --rm=false --tag "$IMAGE" .
-  	  exit
-  	  ;;
-  	s)
+      docker build --quiet=false --no-cache=false --rm=false --tag "$IMAGE" .
+      ;;
+    s)
       echo "Stop: $CONTAINER"
-  	  docker stop $CONTAINER > /dev/null 2>&1
-      exit
+      docker stop $CONTAINER > /dev/null 2>&1
       ;;
     e)
       echo "Export: $CONTAINER"
       docker stop $CONTAINER > /dev/null 2>&1
       docker export $CONTAINER | gzip -c > $CONTAINER.tgz
-      exit
       ;;
     i)
       echo "Import: $IMAGE"
       docker stop $CONTAINER > /dev/null 2>&1
       docker rm $CONTAINER > /dev/null 2>&1
       docker rmi $IMAGE > /dev/null 2>&1
-      gzip -dc "$IMAGE".tgz | docker import - $IMAGE
-      exit
+      gzip -dc "$IMAGE".tgz | docker import - $IMAGE      
       ;;
-  	\?)	 
-	  echo "Usage: "
-	  ;;
+    h)   
+      echo -e "Usage: option(s)
+Options:
+  -(r)un
+  -(d)elete
+  -(c)ommit message
+  -(b)uild 
+  -(s)top 
+  -(i)mport 
+  -(e)xport
+  -(h)elp"
+    ;;
   esac
 done
-
-# Shared Volumes
-if [ ! -d /docker ]; then
-  mkdir -p /docker
-fi
-
-if [ ! -d /var/lib/mongodb ]; then
-  mkdir -p /var/lib/mongodb
-fi
-
-volumes="-v /docker:/docker -v /var/lib/mongodb:/var/lib/mongodb"
-
-# Ports (redis, mongodb)
-ports="-p 56379:6379 -p 57017:27017"
-
-docker stop $CONTAINER > /dev/null 2>&1
-docker rm $CONTAINER > /dev/null 2>&1
-PID=$(docker run -d -h $HOST $volumes -p 2222:22 $ports -name $CONTAINER $IMAGE)
 
 exit

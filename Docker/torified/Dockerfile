@@ -21,7 +21,7 @@ ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Setup
 RUN apt-get install squid privoxy tor -y || true
-ADD config /etc/privoxy/config
-ADD torrc /etc/tor/toorc
+ADD privoxy.conf /etc/privoxy/config
+ADD tor.conf /etc/tor/torrc
 
 CMD ["/usr/bin/supervisord"]
