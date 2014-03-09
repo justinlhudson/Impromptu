@@ -32,7 +32,7 @@ run() {
   volumes="-v /docker:/docker -v /var/lib/mongodb:/var/lib/mongodb"
 
   # ports (redis, mongodb)
-  ports="-p 56379:6379 -p 57017:27017"
+  ports="-p 6379:6379 -p 27017:27017"
 
   docker stop $CONTAINER > /dev/null 2>&1
   docker rm $CONTAINER > /dev/null 2>&1
