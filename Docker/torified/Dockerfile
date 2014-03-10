@@ -20,7 +20,7 @@ RUN apt-get update -y; apt-get upgrade -y; apt-get dist-upgrade -y; apt-get auto
 ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Setup
-RUN apt-get install squid privoxy tor -y || true
+RUN apt-get -y install squid privoxy tor squid || true
 ADD privoxy.conf /etc/privoxy/config
 ADD tor.conf /etc/tor/torrc
 
