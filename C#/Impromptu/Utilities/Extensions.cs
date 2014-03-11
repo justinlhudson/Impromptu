@@ -34,7 +34,7 @@ namespace Impromptu.Utilities
         public static List<T> ToList<T>(this ConcurrentBag<T> bag)
         {
             var result = new List<T>();
-            foreach(var item in bag.ToArray())
+            foreach(var item in bag)
                 result.Add(item);
             return result.ToList();
         }
