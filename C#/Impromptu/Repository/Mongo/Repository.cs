@@ -49,6 +49,24 @@ namespace Impromptu.Repository.Mongo
             }
         }
 
+        public string TouchCollection<T>(bool data, bool index)  where T : IEntity
+        {
+            var commands = new Dictionary<string,object>();
+            commands.Add("touch", GetCollectionName<T>());
+            commands.Add("data", data.ToString().ToLower());
+            commands.Add("index", index.ToString().ToLower());
+            return Run(commands);
+        }
+
+        public string Run(Dictionary<string, object> commands)
+        {        
+            var textSearchCommand = new CommandDocument();
+            textSearchCommand.AddRange(commands);
+
+            var commandResult = Database.RunCommand(textSearchCommand);
+            return commandResult.Response.ToString();
+        }
+
         public IEnumerable<T> Find<T>(string code, int limit = int.MaxValue) where T : IEntity
         {
             var document = BsonSerializer.Deserialize<BsonDocument>(code);

@@ -32,7 +32,7 @@ run() {
 
   docker stop $CONTAINER > /dev/null 2>&1
   docker rm $CONTAINER > /dev/null 2>&1
-  PID=$(docker run -d -h $HOST $volumes $ports -name $CONTAINER $IMAGE "/usr/bin/supervisord")
+  PID=$(docker run -d -t -h $HOST $volumes $ports --name $CONTAINER $IMAGE "/usr/bin/supervisord")
 
   #ssh -L 8118:127.0.0.1:8118 root@<address> -p 8118  
 }

@@ -36,7 +36,7 @@ run() {
 
   docker stop $CONTAINER > /dev/null 2>&1
   docker rm $CONTAINER > /dev/null 2>&1
-  PID=$(docker run -d -h $HOST $volumes -p 2222:22 $ports -name $CONTAINER $IMAGE "/usr/bin/supervisord")
+  PID=$(docker run -d -t -h $HOST $volumes -p 2222:22 $ports --name $CONTAINER $IMAGE "/usr/bin/supervisord")
 }
 
 ### Terminal operations ###
