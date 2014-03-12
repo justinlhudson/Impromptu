@@ -49,7 +49,7 @@ namespace Impromptu.Repository.Mongo
             }
         }
 
-        public string TouchCollection<T>(bool data, bool index)  where T : IEntity
+        public string MemoryCache<T>(bool data, bool index)  where T : IEntity
         {
             var commands = new Dictionary<string,object>();
             commands.Add("touch", GetCollectionName<T>());
