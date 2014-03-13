@@ -59,12 +59,21 @@ namespace Impromptu.Repository.Mongo
         }
 
         public string Run(Dictionary<string, object> commands)
-        {        
-            var textSearchCommand = new CommandDocument();
-            textSearchCommand.AddRange(commands);
+        {     
+            var result = string.Empty;
+            try
+            {
+                var textSearchCommand = new CommandDocument();
+                textSearchCommand.AddRange(commands);
 
-            var commandResult = Database.RunCommand(textSearchCommand);
-            return commandResult.Response.ToString();
+                var commandResult = Database.RunCommand(textSearchCommand);
+                result = commandResult.Response.ToString();
+            }
+            catch(Exception ex)
+            {
+                result = ex.ToString();
+            }
+            return result;
         }
 
         public IEnumerable<T> Find<T>(string code, int limit = int.MaxValue) where T : IEntity

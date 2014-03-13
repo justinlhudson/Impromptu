@@ -2,6 +2,7 @@ using System;
 using System.Threading;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using System.Configuration;
 
 namespace Impromptu.Utilities
 {
@@ -9,7 +10,14 @@ namespace Impromptu.Utilities
     {
         public static ParallelOptions ParallelOptionsDefault()
         {
-            return new ParallelOptions(){ MaxDegreeOfParallelism = Environment.ProcessorCount + 1 };
+            var maxDegreeOfParallelism = Environment.ProcessorCount + 1;
+
+            var overrideMaxDegreeOfParallelism = ConfigurationManager.AppSettings["MaxDegreeOfParallelism"];
+            if(!string.IsNullOrEmpty(overrideMaxDegreeOfParallelism))
+                maxDegreeOfParallelism = (int)Convert.ToInt64(overrideMaxDegreeOfParallelism);
+
+            return new ParallelOptions()
+            { MaxDegreeOfParallelism = maxDegreeOfParallelism };
         }
 
         public static bool TryExecute(TimeSpan timeout, Action action, bool abort = true, bool surpressExceptions = false)
