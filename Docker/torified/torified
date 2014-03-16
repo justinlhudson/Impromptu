@@ -28,7 +28,7 @@ run() {
   volumes="-v /docker:/docker"
 
   # ports (tor, torDir, privoxy)
-  ports="-p 9001:9001 -p 9030:9030 -p 8118:22"
+  ports="-p 9001:9001 -p 9030:9030 -p 2223:22"
 
   docker stop $CONTAINER > /dev/null 2>&1
   docker rm $CONTAINER > /dev/null 2>&1
