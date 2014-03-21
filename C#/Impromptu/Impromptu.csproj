@@ -126,6 +126,8 @@
     <Compile Include="Messaging\Redis\Storage.cs" />
     <Compile Include="Messaging\Redis\RedisBase.cs" />
     <Compile Include="Utilities\Helper.cs" />
+    <Compile Include="Messaging\Memory\Queue.cs" />
+    <Compile Include="Messaging\IQueue.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -163,5 +165,6 @@
     <Folder Include="Utilities\" />
     <Folder Include="Messaging\" />
     <Folder Include="Messaging\Redis\" />
+    <Folder Include="Messaging\Memory\" />
   </ItemGroup>
 </Project>
