@@ -1,4 +1,5 @@
-﻿using System;
+﻿/*
+using System;
 using ServiceStack.Redis;
 using Impromptu.Utilities;
 using ServiceStack.Redis.Generic;
@@ -25,3 +26,4 @@ namespace Impromptu.Messaging.Redis
     }
 }
 
+*/
