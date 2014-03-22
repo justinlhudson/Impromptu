@@ -7,7 +7,7 @@ namespace Impromptu.Messaging.Memory
 {
   public class Queue : IQueue
   {
-    private ConcurrentDictionary<string, ConcurrentQueue<object>> _queueList;
+    private static ConcurrentDictionary<string, ConcurrentQueue<object>> _queueList;
 
     public Queue()
     {
@@ -18,11 +18,10 @@ namespace Impromptu.Messaging.Memory
     {
       if(_queueList.ContainsKey(list))
       {
-        var queue = _queueList[list];
-        while(queue.Count > 0)
+        while(_queueList[list].Count > 0)
         {
           object temp;
-          queue.TryDequeue(out temp);      
+          _queueList[list].TryDequeue(out temp);      
         }
       }
     }
@@ -30,21 +29,17 @@ namespace Impromptu.Messaging.Memory
     public long Length(string list)
     {
       if(_queueList.ContainsKey(list))
-      {
-        var queue = _queueList[list];
-        return  queue.Count;
-      }
+        return  _queueList[list].Count;
       return -1;
     }
 
     public void Push<T>(string list, T value)
     {
       if(!_queueList.ContainsKey(list))
-      if(_queueList.TryAdd(list, new ConcurrentQueue<object>()))
-      {
-        var queue = _queueList[list];
-        queue.Enqueue(value);
-      }
+        _queueList.TryAdd(list, new ConcurrentQueue<object>());
+
+      if(_queueList.ContainsKey(list))
+        _queueList[list].Enqueue(value);
       else
         throw new Exception("List not created");
     }
@@ -53,9 +48,8 @@ namespace Impromptu.Messaging.Memory
     {
       if(_queueList.ContainsKey(list))
       {
-        var queue = _queueList[list];
         object temp;
-        if(queue.TryDequeue(out temp))
+        if(_queueList[list].TryDequeue(out temp))
           return (T)temp;          
       }
 
