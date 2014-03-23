@@ -52,7 +52,6 @@ while getopts "rdc:bseih" opt; do
       ;;    
     c)
       echo "Commit: $CONTAINER to $IMAGE"
-      docker stop $CONTAINER > /dev/null 2>&1
       docker commit -m "$OPTARG" $CONTAINER $IMAGE 
       ;;
     b)
