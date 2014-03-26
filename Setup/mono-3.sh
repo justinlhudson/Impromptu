@@ -32,6 +32,7 @@ git fetch
 make
 make install
 
+# Note: http://www.mono-project.com/Mono_LLVM
 cd /opt/mono-3/mono/
 git fetch
 ./autogen.sh --prefix=/usr/local
