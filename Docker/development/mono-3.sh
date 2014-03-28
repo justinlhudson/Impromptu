@@ -21,44 +21,20 @@ cd /opt/mono-3/
 # Download source(s)
 git clone git://github.com/mono/libgdiplus.git
 git clone git://github.com/mono/mono.git
-git clone git://github.com/mono/xsp.git
-#git clone https://github.com/mono/gtk-sharp.git
-#git clone https://github.com/mono/gio-sharp.git
-#git clone git://github.com/mono/mod_mono.git
 
 # Compile
 cd /opt/mono-3/libgdiplus
 git fetch --all
+git checkout "mono-3.2.8-branch"
 ./autogen.sh --prefix=/usr/local
 make
 make install
+make clean
 
 cd /opt/mono-3/mono
 git fetch --all
-./autogen.sh --prefix=/usr/local
-make
+git checkout "mono-3.2.8-branch"
+./autogen.sh --prefix=/usr/local --enable-optimized --enable-llvm=yes --enable-targets="x86 x86_64"
+make 
 make install
-
-cd /opt/mono-3/xsp
-git fetch --all
-./autogen.sh --prefix=/usr/local
-make
-make install
-
-#cd /opt/mono-3/gtk-sharp
-#git fetch --all
-#./autogen.sh --prefix=/usr/local
-#make
-#make install
-
-#cd /opt/mono-3/gio-sharp
-#git fetch --all
-#./autogen-2.22.sh --prefix=/usr/local
-#make
-#make install
-
-#cd /opt/mono-3/mod_mono
-#git fetch --all
-#./autogen.sh --prefix=/usr/local
-#make
-#make install
+make clean
