@@ -34,7 +34,7 @@ make clean
 cd /opt/mono-3/mono
 git fetch --all
 git checkout "mono-3.2.8-branch"
-./autogen.sh --prefix=/usr/local --enable-optimized --enable-llvm=yes --enable-targets="x86 x86_64"
+./autogen.sh --prefix=/usr/local --enable-optimized --enable-llvm=yes
 make 
 make install
 make clean
