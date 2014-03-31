@@ -9,6 +9,31 @@ namespace Impromptu.Utilities
     {
         #region Public Static Methods
 
+        public static DateTime DateNoTime(this DateTime dateTime)
+        {
+            return dateTime.Subtract(new TimeSpan(0, dateTime.Hour, dateTime.Minute, dateTime.Second, dateTime.Millisecond));
+        }
+
+        public static DateTime LastWeekDay(this DateTime dateTime)
+        {
+            if(dateTime.IsWeekDay())
+                return dateTime;
+
+            return dateTime.DayOfWeek == DayOfWeek.Sunday ? dateTime.AddDays(-2) : dateTime.AddDays(-1);
+        }
+
+        public static bool IsWeekDay(this DateTime dateTime)
+        {
+            return !dateTime.IsWeekEnd();
+        }
+
+        public static bool IsWeekEnd(this DateTime dateTime)
+        {
+            if(dateTime.DayOfWeek == DayOfWeek.Saturday || dateTime.DayOfWeek == DayOfWeek.Sunday)
+                return true;
+            return false;
+        }
+
         /// <summary>
         /// Change type cast
         /// </summary>
