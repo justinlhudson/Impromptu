@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM uubuntu:12.04
 
 RUN echo "root:root" | chpasswd
 

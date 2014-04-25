@@ -20,3 +20,11 @@ username/password: root/root
 	mono-latest, redis. mongodb development box with ssh port: 2222
 * torified 
 	privoxy with tor. simply ssh port: 8118 and forward port: 8118
+
+## Linux
+
+### Configs
+Holding place for config file(s).
+
+### Scripts
+Snippest for Linux Distro(s).

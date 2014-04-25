@@ -8,6 +8,8 @@ fi
 # https://github.com/ggreer/the_silver_searcher
 apt-get install silversearcher-ag
 
+apt-get install expect, jump, gdisk
+
 # http://rvm.io/
 curl -sSL https://get.rvm.io | bash -s stable
 
@@ -16,7 +18,3 @@ gem install tmuxinator
 
 # https://github.com/gmarik/Vundle.vim
 git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-
-# https://launchpad.net/~ermshiperete/+archive/monodevelop-beta
-add-apt-repository ppa:ermshiperete/monodevelop-beta
-apt-get update && apt-get install monodevelop-4.0
