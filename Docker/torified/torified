@@ -5,11 +5,11 @@ if [ `whoami` != root ]; then
     exit
 fi
 
-# Wait for docker
-chmod 777 "/var/run/docker.sock"
-docker_lock=/var/run/docker.sock
-while [ ! -e $docker_lock ] ; do
-  inotifywait -t 2 -e create $(dirname $docker_lock)
+# Wait for docker.io
+chmod 777 "/var/run/docker.io.sock"
+docker.io_lock=/var/run/docker.io.sock
+while [ ! -e $docker.io_lock ] ; do
+  inotifywait -t 2 -e create $(dirname $docker.io_lock)
 done
 
 ### CONSTAINTS ###
@@ -18,21 +18,21 @@ HOST=$(hostname)
 IMAGE="torified"
 CONTAINER="$IMAGE"_container
 
-### Docker run ###
+### docker.io run ###
 run() {
   # shared volumes
-  if [ ! -d /docker ]; then
-    mkdir -p /docker
+  if [ ! -d /docker.io ]; then
+    mkdir -p /docker.io
   fi
 
-  volumes="-v /docker:/docker"
+  volumes="-v /docker.io:/docker.io"
 
   # ports (tor, torDir, privoxy)
   ports="-p 9001:9001 -p 9030:9030 -p 2223:22"
 
-  docker stop $CONTAINER > /dev/null 2>&1
-  docker rm $CONTAINER > /dev/null 2>&1
-  PID=$(docker run -d -t -h $HOST $volumes $ports --name $CONTAINER $IMAGE "/usr/bin/supervisord")
+  docker.io stop $CONTAINER > /dev/null 2>&1
+  docker.io rm $CONTAINER > /dev/null 2>&1
+  PID=$(docker.io run -d -t -h $HOST $volumes $ports --name $CONTAINER $IMAGE "/usr/bin/supervisord")
 
   #ssh -L 8118:127.0.0.1:8118 root@<address> -p 8118  
 }
@@ -46,31 +46,31 @@ while getopts "rdc:bseih" opt; do
       ;;
     d)
       echo "Delete: $IMAGE"
-      docker rmi $IMAGE
+      docker.io rmi $IMAGE
       ;;    
   	c)
       echo "Commit: $CONTAINER to $IMAGE"
-  	  docker commit -m "$OPTARG" $CONTAINER $IMAGE 
+  	  docker.io commit -m "$OPTARG" $CONTAINER $IMAGE 
   	  ;;
   	b)
       echo "Build: $IMAGE"
-  	  docker build --quiet=false --no-cache=false --rm=false --tag "$IMAGE" .
+  	  docker.io build --quiet=false --no-cache=false --rm=false --tag "$IMAGE" .
   	  ;;
   	s)
       echo "Stop: $CONTAINER"
-  	  docker stop $CONTAINER > /dev/null 2>&1
+  	  docker.io stop $CONTAINER > /dev/null 2>&1
       ;;
     e)
       echo "Export: $CONTAINER"
-      docker stop $CONTAINER > /dev/null 2>&1
-      docker export $CONTAINER | gzip -c > $CONTAINER.tgz
+      docker.io stop $CONTAINER > /dev/null 2>&1
+      docker.io export $CONTAINER | gzip -c > $CONTAINER.tgz
       ;;
     i)
       echo "Import: $IMAGE"
-      docker stop $CONTAINER > /dev/null 2>&1
-      docker rm $CONTAINER > /dev/null 2>&1
-      docker rmi $IMAGE > /dev/null 2>&1
-      gzip -dc "$CONTAINER".tgz | docker import - $IMAGE       
+      docker.io stop $CONTAINER > /dev/null 2>&1
+      docker.io rm $CONTAINER > /dev/null 2>&1
+      docker.io rmi $IMAGE > /dev/null 2>&1
+      gzip -dc "$CONTAINER".tgz | docker.io import - $IMAGE       
       ;;
   	h)	 
 	    echo -e "Usage: option(s)
