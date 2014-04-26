@@ -1,4 +1,4 @@
-@reboot /usr/bin/truecrypt --text --non-interactive --password=<password> --keyfiles=<keyfile> --mount ~/<container> ~/<desitnation(must exist)> && /usr/bin/dropbox start
+@reboot sudo /usr/bin/truecrypt --text --non-interactive --password=<password> --keyfiles=<keyfile> --mount ~/<container> ~/<desitnation(must exist)> && /usr/bin/dropbox start
 
 @daily x=30; while [ $(/usr/bin/du -sm /home/security/Surveillance/ | /usr/bin/awk '{print $1}') -gt 1000 ] && [ "$x" -gt 0 ]; do /usr/bin/find /home/security/Surveillance/* -type f -mtime +$x -delete; let x-=1; done
 
