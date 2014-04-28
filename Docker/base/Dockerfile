@@ -14,8 +14,11 @@ RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 3E5C1192
 
 RUN mkdir -p /var/run/sshd; mkdir -p /var/log/supervisor
 
-RUN apt-get update -y; apt-get install vim sudo cron expect openssh-server supervisor, mono-devel -y
-RUN apt-get update -y; apt-get upgrade -y; apt-get dist-upgrade -y; apt-get autoremove -y -f; apt-get autoclean -y -f
+# Base Apps
+RUN apt-get update -y; apt-get install vim sudo cron expect openssh-server supervisor
+RUN apt-get update -y; apt-get upgrade -y; apt-get dist-upgrade -y; apt-get autoremove -y; apt-get autoclean -y 
+
+# Extra App(s)
 
 # Service(s)
 ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
