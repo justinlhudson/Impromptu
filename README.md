@@ -1,6 +1,6 @@
 # Impromptu
 
-As the name implies, just a bunch of helpers.
+As the name implies, just a bunch of helpers. Like a junk drawer of things with some good, some bad, and some forgotten.
 
 ## C-Sharp
 
@@ -9,7 +9,7 @@ As the name implies, just a bunch of helpers.
 ## DOCKER
 
 ### General
-All images contain openSSH and so names bash script for running image.
+All images contain openSSH and so named bash script for running image.
 
 ### Images 
 username/password: root/root
