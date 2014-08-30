@@ -21,14 +21,14 @@ username/password: root/root
 * torified 
 	privoxy with tor. simply ssh port: 8118 and forward port: 8118
 
-## Mac-Linux
-HowTos
-
-### Configs
+## Configs
 Holding place for config file(s).
 
-### Scripts
-Snippest
+## Mac
+HowTos
+
+## Linux
+HowTos
 
 ## Windows
 HowTos
