@@ -1,0 +1,8 @@
+Invert Mouse like Mac
+Get-ItemProperty HKLM:\SYSTEM\CurrentControlSet\Enum\HID\*\*\Device` Parameters FlipFlopWheel -EA 0 | ForEach-Object { Set-ItemProperty $_.PSPath FlipFlopWheel 1 }
+
+Go to your device manager and find your device (your mouse or trackpad) 
+2. Find your device's Hardware ID.
+2. Open regedit.exe
+3. Lookup the following thing: HKEY_LOCAL_MACHINE/SYSTEM/CurrentControlSet/Enum/HID/<Hardware ID>/Device Parameters
+4. Change the key named FlipFlopWheel from 0 to 1.

@@ -1,0 +1,13 @@
+Mac Installs
+oh my zsh
+homebrew
+iterm2
+sublime
+chrome
+npm
+docker.io
+vim
+vundle
+silver-searcher
+sourcetree
+xamarin
