@@ -11,4 +11,7 @@ vundle
 silver-searcher
 sourcetree
 xamarin
-
+brew
+	mongodb
+        redis
+robomongo

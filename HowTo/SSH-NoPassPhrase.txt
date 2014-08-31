@@ -1,0 +1,6 @@
+
+
+ssh-keygen
+
+ssh-copy-id -i root@ip_address
+

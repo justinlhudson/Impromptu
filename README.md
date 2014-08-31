@@ -32,3 +32,7 @@ HowTos
 
 ## Windows
 HowTos
+
+## HowTo
+Super generic, not os related
+
