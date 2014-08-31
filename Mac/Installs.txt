@@ -11,7 +11,11 @@ vundle
 silver-searcher
 sourcetree
 xamarin
+filezilla
+Microsoft Remote Desktop
 brew
 	mongodb
         redis
 robomongo
+java
+
