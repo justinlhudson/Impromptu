@@ -18,6 +18,9 @@ RUN mkdir -p /var/run/sshd; mkdir -p /var/log/supervisor
 RUN apt-get update -y; apt-get install vim sudo cron expect openssh-server supervisor -y
 RUN apt-get update -y; apt-get upgrade -y; apt-get dist-upgrade -y; apt-get autoremove -y; apt-get autoclean -y
 
+# Allow root login
+ADD sshd_config /etc/ssh/sshd_config
+
 # Extra App(s)
 RUN apt-get install -y mono-devel;
 
