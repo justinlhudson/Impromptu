@@ -59,8 +59,7 @@
 				<key>ActionParameters</key>
 				<dict>
 					<key>COMMAND_STRING</key>
-					<string>defaults write com.apple.finder AppleShowAllFiles YES
-killall Finder</string>
+					<string>defaults write com.apple.finder AppleShowAllFiles YES</string>
 					<key>CheckedForUserDefaultShell</key>
 					<true/>
 					<key>inputMethod</key>
