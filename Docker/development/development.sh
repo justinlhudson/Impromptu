@@ -8,7 +8,7 @@ fi
 ### CONSTAINTS ###
 
 HOST=$(hostname)
-IMAGE="development_new"
+IMAGE="development"
 CONTAINER="$IMAGE"_container
 
 ### docker.io run ###
@@ -65,7 +65,7 @@ while getopts "rdc:bseih" opt; do
       docker.io stop $CONTAINER > /dev/null 2>&1
       docker.io rm $CONTAINER > /dev/null 2>&1
       docker.io rmi $IMAGE > /dev/null 2>&1
-      gzip -dc "$CONTAINER".tgz | docker.io import - $IMAGE      
+      gzip -dc "$CONTAINER".tgz | docker.io import - $IMAGE
       ;;
     h)   
       echo -e "Usage: option(s)

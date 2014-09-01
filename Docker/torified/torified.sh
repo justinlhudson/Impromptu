@@ -5,13 +5,6 @@ if [ `whoami` != root ]; then
     exit
 fi
 
-# Wait for docker.io
-chmod 777 "/var/run/docker.io.sock"
-docker.io_lock=/var/run/docker.io.sock
-while [ ! -e $docker.io_lock ] ; do
-  inotifywait -t 2 -e create $(dirname $docker.io_lock)
-done
-
 ### CONSTAINTS ###
 
 HOST=$(hostname)
