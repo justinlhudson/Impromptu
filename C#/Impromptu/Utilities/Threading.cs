@@ -10,7 +10,7 @@ namespace Impromptu.Utilities
     {
         public static ParallelOptions ParallelOptionsDefault()
         {
-            var maxDegreeOfParallelism = Environment.ProcessorCount + 1;
+			var maxDegreeOfParallelism = System.Math.Max(1, (int)Convert.ToInt16(Environment.ProcessorCount * .5));
 
             var overrideMaxDegreeOfParallelism = ConfigurationManager.AppSettings["MaxDegreeOfParallelism"];
             if(!string.IsNullOrEmpty(overrideMaxDegreeOfParallelism))
