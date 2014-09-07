@@ -28,7 +28,7 @@ run() {
   PID=$(docker.io run -d -t -h $HOST $volumes $ports --name $CONTAINER $IMAGE "/usr/bin/supervisord")
 
   #alias torified="ssh -L 8118:127.0.0.1:8118 <usernam>@<ip>-p 2222"
-  # squids port 3128 (http), privoxy 8118, tor 9050 (socks5)
+  # squids port 3128 (http), privoxy 8118, tor 9050 (socks5), polipo 8123, ssh socks 1080
 }
 
 ### Terminal operations ###
