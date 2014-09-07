@@ -1,6 +1,7 @@
-FROM ubuntu:14.04
+FROM ubuntu:12.04
 
-RUN echo "root:root" | chpasswd
+RUN adduser developer && adduser developer sudo
+RUN echo "developer:password" | chpasswd
 
 # Workaround for upstart errors
 RUN apt-mark hold initscripts udev plymouth mountall ifupdown procps

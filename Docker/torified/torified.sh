@@ -21,7 +21,7 @@ run() {
   volumes="-v /docker.io:/docker.io"
 
   # ports (tor, torDir, privoxy)
-  ports="-p 9001:9001 -p 9030:9030 -p 2223:22"
+  ports="-p 9001:9001 -p 9030:9030 -p 2222:22"
 
   docker.io stop $CONTAINER > /dev/null 2>&1
   docker.io rm $CONTAINER > /dev/null 2>&1
