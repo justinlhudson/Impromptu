@@ -22,9 +22,10 @@ RUN apt-get update -y; apt-get upgrade -y; apt-get dist-upgrade -y; apt-get auto
 ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Setup
-RUN apt-get -y install squid privoxy tor squid || true
+RUN apt-get -y install squid privoxy tor polipo || true
 ADD privoxy.conf /etc/privoxy/config
 ADD tor.conf /etc/tor/torrc
 ADD squid.conf /etc/squid3/squid.conf
+ADD polipo.conf /etc/polipo/conf
 
 CMD ["/usr/bin/supervisord"]
