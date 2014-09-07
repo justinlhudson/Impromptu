@@ -27,7 +27,8 @@ run() {
   docker.io rm $CONTAINER > /dev/null 2>&1
   PID=$(docker.io run -d -t -h $HOST $volumes $ports --name $CONTAINER $IMAGE "/usr/bin/supervisord")
 
-  #ssh -L 8118:127.0.0.1:8118 root@<address> -p 8118  
+  #alias torified="ssh -L 8118:127.0.0.1:8118 <usernam>@<ip>-p 2222"
+  # squids port 3128, privoxy 8118
 }
 
 ### Terminal operations ###
@@ -63,7 +64,7 @@ while getopts "rdc:bseih" opt; do
       docker.io stop $CONTAINER > /dev/null 2>&1
       docker.io rm $CONTAINER > /dev/null 2>&1
       docker.io rmi $IMAGE > /dev/null 2>&1
-      gzip -dc "$CONTAINER".tgz | docker.io import - $IMAGE       
+      gzip -dc "$CONTAINER".tgz | docker.io import - $IMAGE
       ;;
   	h)	 
 	    echo -e "Usage: option(s)
