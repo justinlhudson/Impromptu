@@ -52,7 +52,7 @@ while getopts "rdc:bseih" opt; do
       ;;
     b)
       echo "Build: $IMAGE"
-      docker.io build --quiet=false --no-cache=false --force-rm=true --rm=false --tag "$IMAGE" .
+      docker.io build --quiet=false --no-cache=false --force-rm=true --tag "$IMAGE" .
       ;;
     s)
       echo "Stop: $CONTAINER"
