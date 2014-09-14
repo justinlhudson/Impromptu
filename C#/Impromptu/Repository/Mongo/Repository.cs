@@ -95,7 +95,12 @@ namespace Impromptu.Repository.Mongo
 
     public void SaveOrUpdate<T>(T entry) where T : IEntity
     {
-      GetCollection<T>().Save(entry); // insert or update
+      // insert or update
+      // update: not working correctly so removing then save
+      var item = AsQueryable<T>().FirstOrDefault(i => i.id == entry.id);
+      if(item != null)
+        GetCollection<T>().Remove(new QueryDocument("_id", new BsonObjectId(item.id)));
+      GetCollection<T>().Save(entry); 
     }
 
     public MongoCollection<T> GetCollection<T>() where T : IEntity
