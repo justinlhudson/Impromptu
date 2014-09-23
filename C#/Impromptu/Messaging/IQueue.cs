@@ -10,6 +10,8 @@ namespace Impromptu.Messaging
 
     void Push<T>(string list, T value);
 
+    //bool Contains<T>(T value);
+
     T Pop<T>(string list);
   }
 }
