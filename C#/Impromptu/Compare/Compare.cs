@@ -28,7 +28,7 @@ namespace Impromptu.Compare
 
   }
 
-  public class Compare
+  public class Helpers
   {
     public static bool FileEquals(string filePath1, string filePath2)
     {
