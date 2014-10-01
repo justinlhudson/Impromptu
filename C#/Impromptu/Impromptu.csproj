@@ -99,6 +99,9 @@
     <Reference Include="ServiceStack.Interfaces">
       <HintPath>..\..\..\..\Bitbucket\development\StockMarket\packages\ServiceStack.Interfaces.4.0.31\lib\portable-wp80+sl5+net40+win8+monotouch+monoandroid\ServiceStack.Interfaces.dll</HintPath>
     </Reference>
+    <Reference Include="StackExchange.Redis">
+      <HintPath>..\..\..\..\Bitbucket\development\StockMarket\packages\StackExchange.Redis.1.0.333\lib\net45\StackExchange.Redis.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DesignPattern\Command.cs" />
