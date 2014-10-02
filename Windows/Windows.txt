@@ -1,3 +1,0 @@
-
-Download and Install SysInternals, add “c:\Bin” to path for these and future binaries
-SysInernals c:\Bin to path

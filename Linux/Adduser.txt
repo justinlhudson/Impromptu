@@ -1,2 +1,0 @@
-sudo adduser -m <username>
-sudo adduser <username> sudo
