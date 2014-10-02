@@ -13,12 +13,13 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 " General
-Plugin 'taglist.vim'
+Plugin 'The-NERD-tree'
+" Plugin 'taglist.vim'
 Plugin 'surround.vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'kien/ctrlp.vim'
 Plugin 'rking/ag.vim'
-Plugin 'Valloric/YouCompleteMe'
+" Plugin 'Valloric/YouCompleteMe'
 Plugin 'Lokaltog/vim-easymotion'
 
 " All of your Plugins must be added before the following line
@@ -37,3 +38,6 @@ filetype plugin indent on    " required
 " "
 " " see :h vundle for more details or wiki for FAQ
 " " Put your non-Plugin stuff after this line
+
+" Toggle Nerd Tree command
+map <C-n> :NERDTreeToggle<CR>
