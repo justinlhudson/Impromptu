@@ -37,12 +37,11 @@ namespace Impromptu.Repository.Mongo
 
         var mongoUrl = new MongoUrl(connectionString);
 
-        if(clear)
+        if (clear)
           Server.DropDatabase(mongoUrl.DatabaseName);
 
         Database = Server.GetDatabase(mongoUrl.DatabaseName);	   
-      }
-      catch(Exception)
+      } catch (Exception)
       {
         throw;
       }
@@ -67,18 +66,17 @@ namespace Impromptu.Repository.Mongo
 
         var commandResult = Database.RunCommand(textSearchCommand);
         result = commandResult.Response.ToString();
-      }
-      catch(Exception ex)
+      } catch (Exception ex)
       {
         result = ex.ToString();
       }
       return result;
     }
 
-    public IEnumerable<T> Find<T>(string code, string sortBy = "", bool sortDescending= false, int limit = int.MaxValue) where T : IEntity
+    public IEnumerable<T> Find<T>(string code, string sortBy = "", bool sortDescending = false, int limit = int.MaxValue) where T : IEntity
     {
       var sortedBy = SortBy.Ascending(sortBy);
-      if(sortDescending)
+      if (sortDescending)
         sortedBy = SortBy.Descending(sortBy);
 
       var document = BsonSerializer.Deserialize<BsonDocument>(code);
@@ -98,8 +96,8 @@ namespace Impromptu.Repository.Mongo
       // insert or update
       // update: not working correctly so removing then save
       var item = AsQueryable<T>().FirstOrDefault(i => i.id == entry.id);
-      if(item != null)
-        GetCollection<T>().Remove(new QueryDocument("_id", new BsonObjectId(item.id)));
+      if (item != null)
+        GetCollection<T>().Remove(new QueryDocument("_id", new BsonObjectId(new ObjectId(item.id))));
       GetCollection<T>().Save(entry); 
     }
 
@@ -116,12 +114,12 @@ namespace Impromptu.Repository.Mongo
     private string GetCollectionName<T>() where T : IEntity
     {
       string collectionName;
-      if(typeof(T).BaseType.Equals(typeof(object)))
+      if (typeof(T).BaseType.Equals(typeof(object)))
         collectionName = GetCollectionNameFromInterface<T>();
       else
         collectionName = GetCollectionNameFromType(typeof(T));
 
-      if(string.IsNullOrEmpty(collectionName))
+      if (string.IsNullOrEmpty(collectionName))
         throw new ArgumentException("Collection name cannot be empty for this entity");
       return collectionName.Pluralize();
     }
@@ -132,7 +130,7 @@ namespace Impromptu.Repository.Mongo
 
       // Check to see if the object (inherited from Entity) has a CollectionName attribute
       var att = Attribute.GetCustomAttribute(typeof(T), typeof(CollectionName));
-      if(att != null)
+      if (att != null)
       {
         // It does! Return the value specified by the CollectionName attribute
         collectionname = ((CollectionName)att).name;
@@ -151,7 +149,7 @@ namespace Impromptu.Repository.Mongo
 
       // Check to see if the object (inherited from Entity) has a CollectionName attribute
       var att = Attribute.GetCustomAttribute(entitytype, typeof(CollectionName));
-      if(att != null)
+      if (att != null)
       {
         // It does! Return the value specified by the CollectionName attribute
         collectionname = ((CollectionName)att).name;
@@ -159,7 +157,7 @@ namespace Impromptu.Repository.Mongo
       else
       {
         // No attribute found, get the basetype
-        while(!entitytype.BaseType.Equals(typeof(Entity)))
+        while (!entitytype.BaseType.Equals(typeof(Entity)))
           entitytype = entitytype.BaseType;
         collectionname = entitytype.Name;
       }
