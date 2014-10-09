@@ -88,16 +88,14 @@ namespace Impromptu.Repository.Mongo
     public void Delete<T>(T entry) where T : IEntity
     {
       var query = Query<Entity>.EQ(e => e.id, entry.id);
-      GetCollection<T>().Remove(query);
+      GetCollection<T>().Remove(query, MongoDB.Driver.RemoveFlags.Single);
     }
 
     public void SaveOrUpdate<T>(T entry) where T : IEntity
     {
       // insert or update
       // update: not working correctly so removing then save
-      var item = AsQueryable<T>().FirstOrDefault(i => i.id == entry.id);
-      if (item != null)
-        GetCollection<T>().Remove(new QueryDocument("_id", new BsonObjectId(new ObjectId(item.id))));
+      Delete(entry);
       GetCollection<T>().Save(entry); 
     }
 
