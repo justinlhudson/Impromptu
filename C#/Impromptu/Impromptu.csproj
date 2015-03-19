@@ -75,12 +75,6 @@
     <Reference Include="StackExchange.Redis">
       <HintPath>..\..\..\..\Bitbucket\development\StockMarket\packages\StackExchange.Redis.1.0.394\lib\net45\StackExchange.Redis.dll</HintPath>
     </Reference>
-    <Reference Include="MongoDB">
-      <HintPath>..\..\..\..\Bitbucket\development\StockMarket\packages\mongocsharpdriver.1.9.2\lib\net35\MongoDB.Bson.dll</HintPath>
-    </Reference>
-    <Reference Include="MongoDB">
-      <HintPath>..\..\..\..\Bitbucket\development\StockMarket\packages\mongocsharpdriver.1.9.2\lib\net35\MongoDB.Bson.dll</HintPath>
-    </Reference>
     <Reference Include="ServiceStack.Text">
       <HintPath>..\..\..\..\Bitbucket\development\StockMarket\packages\ServiceStack.Text.4.0.38\lib\net40\ServiceStack.Text.dll</HintPath>
     </Reference>
@@ -101,6 +95,12 @@
     </Reference>
     <Reference Include="ServiceStack">
       <HintPath>..\..\..\..\Bitbucket\development\StockMarket\packages\ServiceStack.4.0.38\lib\net40\ServiceStack.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Bson">
+      <HintPath>..\..\..\..\Bitbucket\development\StockMarket\packages\mongocsharpdriver.1.8.2\lib\net35\MongoDB.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver">
+      <HintPath>..\..\..\..\Bitbucket\development\StockMarket\packages\mongocsharpdriver.1.8.2\lib\net35\MongoDB.Driver.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
