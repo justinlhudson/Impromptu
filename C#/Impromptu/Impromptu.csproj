@@ -72,9 +72,6 @@
       <HintPath>..\packages\Microsoft.NET\Framework64\v4.0.30319\Microsoft.CSharp.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.Caching" />
-    <Reference Include="StackExchange.Redis">
-      <HintPath>..\..\..\..\Bitbucket\development\StockMarket\packages\StackExchange.Redis.1.0.394\lib\net45\StackExchange.Redis.dll</HintPath>
-    </Reference>
     <Reference Include="ServiceStack.Text">
       <HintPath>..\..\..\..\Bitbucket\development\StockMarket\packages\ServiceStack.Text.4.0.38\lib\net40\ServiceStack.Text.dll</HintPath>
     </Reference>
@@ -97,10 +94,13 @@
       <HintPath>..\..\..\..\Bitbucket\development\StockMarket\packages\ServiceStack.4.0.38\lib\net40\ServiceStack.dll</HintPath>
     </Reference>
     <Reference Include="MongoDB.Bson">
-      <HintPath>..\..\..\..\Bitbucket\development\StockMarket\packages\mongocsharpdriver.1.8.2\lib\net35\MongoDB.Bson.dll</HintPath>
+      <HintPath>..\..\..\..\Bitbucket\development\StockMarket\packages\mongocsharpdriver.1.10.0\lib\net35\MongoDB.Bson.dll</HintPath>
     </Reference>
     <Reference Include="MongoDB.Driver">
-      <HintPath>..\..\..\..\Bitbucket\development\StockMarket\packages\mongocsharpdriver.1.8.2\lib\net35\MongoDB.Driver.dll</HintPath>
+      <HintPath>..\..\..\..\Bitbucket\development\StockMarket\packages\mongocsharpdriver.1.10.0\lib\net35\MongoDB.Driver.dll</HintPath>
+    </Reference>
+    <Reference Include="StackExchange.Redis">
+      <HintPath>..\..\..\..\Bitbucket\development\StockMarket\packages\StackExchange.Redis.1.0.414\lib\net45\StackExchange.Redis.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
