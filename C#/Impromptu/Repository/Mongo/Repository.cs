@@ -6,14 +6,9 @@ using System.Configuration;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using MongoDB.Bson;
 using MongoDB.Driver;
-using MongoDB.Driver.Builders;
-using MongoDB.Driver.GridFS;
+using MongoDB.Driver.Wrappers;
 using MongoDB.Driver.Linq;
-using MongoDB.Bson.Serialization;
-using MongoDB.Bson.Serialization.Serializers;
-using MongoDB.Bson.Serialization.Options;
 using Inflector;
 
 namespace Impromptu.Repository.Mongo
@@ -22,9 +17,7 @@ namespace Impromptu.Repository.Mongo
   {
     public MongoClient Client { get; private set; }
 
-    public MongoServer Server { get; private set; }
-
-    public MongoDatabase Database { get; private set; }
+    public IMongoDatabase Database { get; private set; }
 
     public Repository(string database, string connectionString = "mongodb://localhost", bool clear = false)
     {
@@ -33,14 +26,13 @@ namespace Impromptu.Repository.Mongo
         connectionString += "/" + database;
 
         Client = new MongoClient(connectionString);
-        Server = Client.GetServer();		
 
         var mongoUrl = new MongoUrl(connectionString);
 
-        if (clear)
-          Server.DropDatabase(mongoUrl.DatabaseName);
+        //if (clear)
+        //  Server.DropDatabase(mongoUrl.DatabaseName);
 
-        Database = Server.GetDatabase(mongoUrl.DatabaseName);	   
+        Database = Client.GetDatabase(mongoUrl.DatabaseName);
       } catch (Exception)
       {
         throw;
@@ -56,7 +48,7 @@ namespace Impromptu.Repository.Mongo
       return Run(commands);
     }
 
-    public string Run(Dictionary<string, object> commands)
+    public async string Run(Dictionary<string, object> commands)
     {     
       var result = string.Empty;
       try
@@ -64,8 +56,8 @@ namespace Impromptu.Repository.Mongo
         var textSearchCommand = new CommandDocument();
         textSearchCommand.AddRange(commands);
 
-        var commandResult = Database.RunCommand(textSearchCommand);
-        result = commandResult.Response.ToString();
+        var commandResult = await Database.RunCommandAsync(textSearchCommand);
+        result = commandResult.Result;
       } catch (Exception ex)
       {
         result = ex.ToString();
@@ -99,7 +91,7 @@ namespace Impromptu.Repository.Mongo
       GetCollection<T>().Save(entry); 
     }
 
-    public MongoCollection<T> GetCollection<T>() where T : IEntity
+    public IMongoCollection<T> GetCollection<T>() where T : IEntity
     {
       return Database.GetCollection<T>(GetCollectionName<T>());
     }
