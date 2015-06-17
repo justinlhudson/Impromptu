@@ -8,7 +8,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Impromptu</RootNamespace>
     <AssemblyName>Impromptu</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
@@ -116,10 +116,6 @@
     <Compile Include="DesignPattern\PublisherSubscriber.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MachineLearning\Discretizer.cs" />
-    <Compile Include="Repository\Mongo\CollectionName.cs" />
-    <Compile Include="Repository\Mongo\Entity.cs" />
-    <Compile Include="Repository\Mongo\IEntity.cs" />
-    <Compile Include="Repository\Mongo\Repository.cs" />
     <Compile Include="DesignPattern\UndoRedo.cs" />
     <Compile Include="Utilities\Configuration.cs" />
     <Compile Include="Utilities\Conversion.cs" />
@@ -146,6 +142,10 @@
     <Compile Include="Utilities\Helper.cs" />
     <Compile Include="Messaging\Memory\Queue.cs" />
     <Compile Include="Messaging\IQueue.cs" />
+    <Compile Include="Repository\mongodb\CollectionName.cs" />
+    <Compile Include="Repository\mongodb\Entity.cs" />
+    <Compile Include="Repository\mongodb\IEntity.cs" />
+    <Compile Include="Repository\mongodb\Repository.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -179,10 +179,10 @@
   <ItemGroup />
   <ItemGroup />
   <ItemGroup>
-    <Folder Include="Repository\Mongo\" />
     <Folder Include="Utilities\" />
     <Folder Include="Messaging\" />
     <Folder Include="Messaging\Redis\" />
     <Folder Include="Messaging\Memory\" />
+    <Folder Include="Repository\mongodb\" />
   </ItemGroup>
 </Project>

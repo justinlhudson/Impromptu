@@ -78,7 +78,10 @@ namespace Impromptu.Repository.Mongo
       FilterDefinition<T> filter = code;
 
       var cursor = GetCollection<T>().Find<T>(filter).Sort(sortedBy).Limit(limit);
-      return cursor as IEnumerable<T>;
+      // HACK: 2.1.? expect release:
+      //return GetCollection<T>().AsQueryable<T>();
+      var temp = cursor.ToListAsync().Result.AsEnumerable();
+      return temp;
     }
 
     public void Delete<T>(T entry) where T : IEntity
@@ -103,8 +106,8 @@ namespace Impromptu.Repository.Mongo
 
     public IQueryable<T> AsQueryable<T>() where T : IEntity
     {
-      // 2.1.? expect release:
-      //return GetCollection<T>().AsQueryable<T>();s
+      // HACK: 2.1.? expect release:
+      //return GetCollection<T>().AsQueryable<T>();
       var builderFilter = Builders<T>.Filter;
       var filter = builderFilter.Ne(e => e.id, new BsonObjectId(new ObjectId())); // all?
       var list = GetCollection<T>().Find(filter).ToListAsync();  

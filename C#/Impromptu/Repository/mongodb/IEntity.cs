@@ -13,6 +13,6 @@ namespace Impromptu.Repository.Mongo
     /// </summary>
     /// <value>Id of the Entity.</value>
     [BsonId]
-    BsonObjectId id { get; set; }
+    ObjectId id { get; set; }
   }
 }
