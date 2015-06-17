@@ -9,7 +9,10 @@ using System.Linq.Expressions;
 using MongoDB.Driver;
 using MongoDB.Driver.Wrappers;
 using MongoDB.Driver.Linq;
+using MongoDB.Driver.Linq.Utils;
 using Inflector;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization;
 
 namespace Impromptu.Repository.Mongo
 {
@@ -48,7 +51,7 @@ namespace Impromptu.Repository.Mongo
       return Run(commands);
     }
 
-    public async string Run(Dictionary<string, object> commands)
+    public string Run(Dictionary<string, object> commands)
     {     
       var result = string.Empty;
       try
@@ -56,8 +59,8 @@ namespace Impromptu.Repository.Mongo
         var textSearchCommand = new CommandDocument();
         textSearchCommand.AddRange(commands);
 
-        var commandResult = await Database.RunCommandAsync(textSearchCommand);
-        result = commandResult.Result;
+        var commandResult = Database.RunCommandAsync<dynamic>(textSearchCommand).Result;
+        result = commandResult;
       } catch (Exception ex)
       {
         result = ex.ToString();
@@ -67,20 +70,22 @@ namespace Impromptu.Repository.Mongo
 
     public IEnumerable<T> Find<T>(string code, string sortBy = "", bool sortDescending = false, int limit = int.MaxValue) where T : IEntity
     {
-      var sortedBy = SortBy.Ascending(sortBy);
+      var builderSort = Builders<T>.Sort;
+      var sortedBy = builderSort.Ascending(sortBy);
       if (sortDescending)
-        sortedBy = SortBy.Descending(sortBy);
+        sortedBy = builderSort.Descending(sortBy);
 
-      var document = BsonSerializer.Deserialize<BsonDocument>(code);
-      var queryDoc = new QueryDocument(document);
-      var cursor = GetCollection<T>().FindAs<T>(queryDoc).SetSortOrder(sortedBy).SetLimit(limit);
+      FilterDefinition<T> filter = code;
+
+      var cursor = GetCollection<T>().Find<T>(filter).Sort(sortedBy).Limit(limit);
       return cursor as IEnumerable<T>;
     }
 
     public void Delete<T>(T entry) where T : IEntity
     {
-      var query = Query<Entity>.EQ(e => e.id, entry.id);
-      GetCollection<T>().Remove(query, MongoDB.Driver.RemoveFlags.Single);
+      var builderFilter = Builders<T>.Filter;
+      var filter = builderFilter.Eq(e => e.id, entry.id);
+      GetCollection<T>().DeleteOneAsync(filter);
     }
 
     public void SaveOrUpdate<T>(T entry) where T : IEntity
@@ -88,7 +93,7 @@ namespace Impromptu.Repository.Mongo
       // insert or update
       // update: not working correctly so removing then save
       Delete(entry);
-      GetCollection<T>().Save(entry); 
+      GetCollection<T>().InsertOneAsync(entry); 
     }
 
     public IMongoCollection<T> GetCollection<T>() where T : IEntity
@@ -98,7 +103,13 @@ namespace Impromptu.Repository.Mongo
 
     public IQueryable<T> AsQueryable<T>() where T : IEntity
     {
-      return GetCollection<T>().AsQueryable<T>();
+      // 2.1.? expect release:
+      //return GetCollection<T>().AsQueryable<T>();s
+      var builderFilter = Builders<T>.Filter;
+      var filter = builderFilter.Ne(e => e.id, new BsonObjectId(new ObjectId())); // all?
+      var list = GetCollection<T>().Find(filter).ToListAsync();  
+      
+      return list.Result.AsQueryable();
     }
 
     private string GetCollectionName<T>() where T : IEntity
