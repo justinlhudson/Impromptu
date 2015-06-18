@@ -97,6 +97,7 @@ namespace Impromptu.Repository.Mongo
       // update: not working correctly so removing then save
       Delete(entry);
       GetCollection<T>().InsertOneAsync(entry); 
+      return;
     }
 
     public IMongoCollection<T> GetCollection<T>() where T : IEntity
@@ -104,17 +105,29 @@ namespace Impromptu.Repository.Mongo
       return Database.GetCollection<T>(GetCollectionName<T>());
     }
 
+    public IQueryable<T> AsQueryable<T>(Expression<Func<T,bool>> rule) where T : IEntity
+    {
+      // HACK: 2.1.? expect release:
+      //return GetCollection<T>().AsQueryable<T>();
+      var builderFilter = Builders<T>.Filter;
+
+      var filter = builderFilter.Where(rule); // all = builderFilter.Where(rule); // all
+      var list = GetCollection<T>().Find(filter).ToListAsync();  
+      
+      return list.Result.AsQueryable();
+    }
+    /*
     public IQueryable<T> AsQueryable<T>() where T : IEntity
     {
       // HACK: 2.1.? expect release:
       //return GetCollection<T>().AsQueryable<T>();
       var builderFilter = Builders<T>.Filter;
-      var filter = builderFilter.Ne(e => e.id, new BsonObjectId(new ObjectId())); // all?
+      var filter = builderFilter.Where.NE(e => e.id, new BsonObjectId(new ObjectId())); // all?
       var list = GetCollection<T>().Find(filter).ToListAsync();  
       
       return list.Result.AsQueryable();
     }
-
+*/
     private string GetCollectionName<T>() where T : IEntity
     {
       string collectionName;
