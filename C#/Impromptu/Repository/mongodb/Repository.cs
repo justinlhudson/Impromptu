@@ -29,10 +29,10 @@ namespace Impromptu.Repository.Mongo
         connectionString += "/" + database;
 
         Client = new MongoClient(connectionString);
-        
+        /*
         if (Client.Settings.MaxConnectionPoolSize > 5)
           Client.Settings.MaxConnectionPoolSize = 5;
-        
+        */
         var mongoUrl = new MongoUrl(connectionString);
 
         //if (clear)
