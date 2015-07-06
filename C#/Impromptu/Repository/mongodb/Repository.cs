@@ -22,17 +22,12 @@ namespace Impromptu.Repository.Mongo
 
     public IMongoDatabase Database { get; private set; }
 
-    public Repository(string database, string connectionString = "mongodb://localhost", bool clear = false)
+    public Repository(string connectionString = "mongodb://localhost", bool clear = false)
     {
       try
       {
-        connectionString += "/" + database;
-
         Client = new MongoClient(connectionString);
-
-        const int maxPoolSize = 1000;
-        if (Client.Settings.MaxConnectionPoolSize > maxPoolSize)
-          Client.Settings.MaxConnectionPoolSize = maxPoolSize;
+        var settings = Client.Settings;
 
         var mongoUrl = new MongoUrl(connectionString);
 
