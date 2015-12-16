@@ -27,6 +27,7 @@ namespace Impromptu.Repository.Mongo
       try
       {
         Client = new MongoClient(connectionString);
+
         var settings = Client.Settings;
 
         var mongoUrl = new MongoUrl(connectionString);
@@ -88,7 +89,7 @@ namespace Impromptu.Repository.Mongo
     {
       var builderFilter = Builders<T>.Filter;
       var filter = builderFilter.Eq(e => e.id, entry.id);
-      GetCollection<T>().DeleteOneAsync(filter);
+      GetCollection<T>().DeleteOneAsync(filter).Wait(new TimeSpan(0, 1, 0));
     }
 
     public void SaveOrUpdate<T>(T entry) where T : IEntity
@@ -96,7 +97,7 @@ namespace Impromptu.Repository.Mongo
       // insert or update
       // update: not working correctly so removing then save
       Delete(entry);
-      GetCollection<T>().InsertOneAsync(entry); 
+      GetCollection<T>().InsertOneAsync(entry).Wait(new TimeSpan(0, 1, 0)); 
       return;
     }
 
