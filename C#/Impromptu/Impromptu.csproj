@@ -143,10 +143,6 @@
     <Compile Include="Utilities\Helper.cs" />
     <Compile Include="Messaging\Memory\Queue.cs" />
     <Compile Include="Messaging\IQueue.cs" />
-    <Compile Include="Repository\mongodb\CollectionName.cs" />
-    <Compile Include="Repository\mongodb\Entity.cs" />
-    <Compile Include="Repository\mongodb\IEntity.cs" />
-    <Compile Include="Repository\mongodb\Repository.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -184,6 +180,5 @@
     <Folder Include="Messaging\" />
     <Folder Include="Messaging\Redis\" />
     <Folder Include="Messaging\Memory\" />
-    <Folder Include="Repository\mongodb\" />
   </ItemGroup>
 </Project>
