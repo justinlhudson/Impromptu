@@ -12,8 +12,8 @@ namespace Impromptu
 		[BsonId]
 		public ObjectId Id { get; set; }
 
-		[StringLength(8)]
-		public string List { get; set; }
+		[StringLength(64)]
+		public string Key { get; set; }
 
 		public object Value { get; set; }
 

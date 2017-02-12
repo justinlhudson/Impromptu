@@ -16,26 +16,26 @@ namespace Impromptu.Messaging.MongoDB
 			base.Dispose();
 		}
 
-		public void Flush(string list)
+		public void Flush(string key)
 		{
-			while (Pop<object>(list) != null)
+			while (Pop<object>(key) != null)
 				;
 		}
 
-		public long Length(string list)
+		public long Length(string key)
 		{
-			return MessageQueue.AsQueryable().Where(item => item.List == list).CountAsync().Result;
+			return MessageQueue.AsQueryable().Where(item => item.Key == key).CountAsync().Result;
 		}
 
-		public void Push<T>(string list, T value)
+		public void Push<T>(string key, T value)
 		{
-			MessageQueue.InsertOne(new DataType { List = list, Value = (object)value });
+			MessageQueue.InsertOne(new DataType { Key = key, Value = (object)value });
 		}
 
-		public T Pop<T>(string list)
+		public T Pop<T>(string key)
 		{
 
-			var docs = MessageQueue.AsQueryable().Where(item => item.List == list).OrderBy(item => item.Id).Take(1).ToList();
+			var docs = MessageQueue.AsQueryable().Where(item => item.Key == key).OrderBy(item => item.Id).Take(1).ToList();
 
 			DataType doc = null;
 			if (docs.Count > 0)
