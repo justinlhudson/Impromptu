@@ -39,16 +39,18 @@ namespace Impromptu.Messaging.MongoDB
 
 			DataType doc = null;
 			if (docs.Count > 0)
-				doc = docs[1];
+				doc = docs[0];
 
 			if (doc != null)
 			{
 				var builder = Builders<DataType>.Filter;
 				var filter = builder.Eq("_id", doc.Id);
 				MessageQueue.DeleteOne(filter);
+
+				return (T)doc.Value;
 			}
 
-			return (T)doc.Value;
+			return default(T);
 		}
 	}
 }
