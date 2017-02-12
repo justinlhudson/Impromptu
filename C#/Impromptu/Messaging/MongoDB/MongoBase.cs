@@ -28,7 +28,7 @@ namespace Impromptu.Messaging.MongoDB
 
 		public void Dispose()
 		{
-			_db.DropCollection(_collection);
+			//_db.DropCollection(_collection);
 		}
 	}
 }

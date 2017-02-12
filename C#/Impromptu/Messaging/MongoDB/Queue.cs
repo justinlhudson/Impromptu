@@ -13,7 +13,7 @@ namespace Impromptu.Messaging.MongoDB
 		public Queue(string connection = "localhost:27017", long db = 0)
 		  : base(connection, db) // defaults
 		{
-			//ConfigurationManager.ConnectionStrings["StockMarket"].ConnectionString
+			base.Dispose();
 		}
 
 		public void Flush(string list)
