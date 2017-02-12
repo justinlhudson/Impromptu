@@ -54,9 +54,6 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Inflector">
-      <HintPath>..\packages\Inflector.1.0.0.0\lib\net45\Inflector.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
@@ -76,6 +73,19 @@
     <Reference Include="StackExchange.Redis">
       <HintPath>..\..\..\..\Bitbucket\development\StockMarket\StockAnalyzer\packages\StackExchange.Redis.1.2.0\lib\net45\StackExchange.Redis.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation">
+      <HintPath>..\..\..\..\Bitbucket\development\StockMarket\StockAnalyzer\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Bson">
+      <HintPath>..\..\..\..\Bitbucket\development\StockMarket\StockAnalyzer\packages\MongoDB.Bson.2.4.2\lib\net45\MongoDB.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver">
+      <HintPath>..\..\..\..\Bitbucket\development\StockMarket\StockAnalyzer\packages\MongoDB.Driver.2.4.2\lib\net45\MongoDB.Driver.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver.Core">
+      <HintPath>..\..\..\..\Bitbucket\development\StockMarket\StockAnalyzer\packages\MongoDB.Driver.Core.2.4.2\lib\net45\MongoDB.Driver.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DesignPattern\Command.cs" />
@@ -110,6 +120,9 @@
     <Compile Include="Utilities\Helper.cs" />
     <Compile Include="Messaging\Memory\Queue.cs" />
     <Compile Include="Messaging\IQueue.cs" />
+    <Compile Include="Messaging\MongoDB\MongoBase.cs" />
+    <Compile Include="Messaging\MongoDB\Queue.cs" />
+    <Compile Include="Messaging\MongoDB\DataType.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -147,5 +160,6 @@
     <Folder Include="Messaging\" />
     <Folder Include="Messaging\Redis\" />
     <Folder Include="Messaging\Memory\" />
+    <Folder Include="Messaging\MongoDB\" />
   </ItemGroup>
 </Project>
