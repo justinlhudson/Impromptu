@@ -4,154 +4,166 @@ using System;
 
 namespace Impromptu.Utilities
 {
-    public static class Math
-    {
+	public static class Math
+	{
 
-        #region Public Static Methods
+		#region Public Static Methods
 
-        public static bool IsEven(int value)
-        {
-            return (value % 2 == 0);
-        }
+		public static double Difference<T>(T v1, T v2)
+		{
+			dynamic vd1 = v1;
+			dynamic vd2 = v2;
 
-        public static T Median<T>(this IEnumerable<T> source)
-        {
-            T[] temp = source.ToArray();    
-            Array.Sort(temp);
+			var abs = System.Math.Abs(vd1 - vd2);
+			var sum = vd1 + vd2;
 
-            int count = temp.Length;
-            if(count <= 0)
-                throw new InvalidOperationException("Empty collection");
+			var result = (abs / (sum / 2));
+			return Convert.ToDouble(result);
+		}
 
-            if(count % 2 == 0)
-            {
-                // count is even, average two middle elements
-                dynamic a = temp[count / 2 - 1];
-                dynamic b = temp[count / 2];
-                object result = ((a + b) / 2);
-                return result.Cast<T>();
-            }
-            else
-            {
-                // count is odd, return the middle element
-                object result = (temp[count / 2]);
-                return result.Cast<T>();
-            }
-        }
+		public static bool IsEven(int value)
+		{
+			return (value % 2 == 0);
+		}
 
-        public static T Mean<T>(this IEnumerable<T> source)
-        {
-            var temp = source; 
-            var count = temp.Count();
-            return temp.Mean(0, count);
-        }
+		public static T Median<T>(this IEnumerable<T> source)
+		{
+			T[] temp = source.ToArray();
+			Array.Sort(temp);
 
-        public static T Mean<T>(this IEnumerable<T> source, int start, int end)
-        {
-            T[] temp = source.ToArray(); 
+			int count = temp.Length;
+			if (count <= 0)
+				throw new InvalidOperationException("Empty collection");
 
-            int count = temp.Length;
-            if(count <= 0)
-                throw new InvalidOperationException("Empty collection");
-            if(count < end || start > count || start > end)
-                throw new InvalidOperationException("Index out of range");
+			if (count % 2 == 0)
+			{
+				// count is even, average two middle elements
+				dynamic a = temp[count / 2 - 1];
+				dynamic b = temp[count / 2];
+				object result = ((a + b) / 2);
+				return result.Cast<T>();
+			}
+			else
+			{
+				// count is odd, return the middle element
+				object result = (temp[count / 2]);
+				return result.Cast<T>();
+			}
+		}
 
-            dynamic s = 0;
-            for(var i = start; i < end; i++)
-                s += temp[i];
+		public static T Mean<T>(this IEnumerable<T> source)
+		{
+			var temp = source;
+			var count = temp.Count();
+			return temp.Mean(0, count);
+		}
 
-            object result = (s / (end - start));
-            return result.Cast<T>();
-        }
+		public static T Mean<T>(this IEnumerable<T> source, int start, int end)
+		{
+			T[] temp = source.ToArray();
 
-        public static T Variance<T>(this IEnumerable<T> source)
-        {
-            var temp = source; 
-            var count = temp.Count();
-            return temp.Variance(temp.Mean(), 0, count);
-        }
+			int count = temp.Length;
+			if (count <= 0)
+				throw new InvalidOperationException("Empty collection");
+			if (count < end || start > count || start > end)
+				throw new InvalidOperationException("Index out of range");
 
-        public static T Variance<T>(this IEnumerable<T> source, T mean, int start, int end)
-        {
-            T[] temp = source.ToArray(); 
+			dynamic s = 0;
+			for (var i = start; i < end; i++)
+				s += temp[i];
 
-            int count = temp.Length;
-            if(count <= 0)
-                throw new InvalidOperationException("Empty collection");
-            if(count < end || start > count || start > end)
-                throw new InvalidOperationException("Index out of range");
+			object result = (s / (end - start));
+			return result.Cast<T>();
+		}
 
-            dynamic variance = 0;
-            for(var i = start; i < end; i++)
-            {
-                dynamic t = temp[i];
-                dynamic p = (t - mean);
-                variance += System.Math.Pow(p, 2);
-            }
+		public static T Variance<T>(this IEnumerable<T> source)
+		{
+			var temp = source;
+			var count = temp.Count();
+			return temp.Variance(temp.Mean(), 0, count);
+		}
 
-            dynamic n = end - start;
-            if(start > 0)
-                n -= 1;
+		public static T Variance<T>(this IEnumerable<T> source, T mean, int start, int end)
+		{
+			T[] temp = source.ToArray();
 
-            object result = (variance / (n));
-            return result.Cast<T>();
-        }
+			int count = temp.Length;
+			if (count <= 0)
+				throw new InvalidOperationException("Empty collection");
+			if (count < end || start > count || start > end)
+				throw new InvalidOperationException("Index out of range");
 
-        public static double[][] Normalize(double[][] values, double min, double max)
-        {
-            var data = (double[][])values.Clone();
-            var lists = new List<List<double>>();
+			dynamic variance = 0;
+			for (var i = start; i < end; i++)
+			{
+				dynamic t = temp[i];
+				dynamic p = (t - mean);
+				variance += System.Math.Pow(p, 2);
+			}
 
-            for(var i = 0; i < data[0].Length; i++)
-            {                
-                lists.Add(new List<double>());
-                for(var ii = 0; ii < data.Length; ii++)
-                {
-                    var value = data[ii][i];
-                    lists[i].Add(value);
-                }
-            }
+			dynamic n = end - start;
+			if (start > 0)
+				n -= 1;
 
-            for(var i = 0; i < lists.Count; i++)
-                lists[i] = ((double[])Normalize(lists[i].ToArray(), min, max).Clone()).ToList();
+			object result = (variance / (n));
+			return result.Cast<T>();
+		}
 
-            for(var i = 0; i < data.Length; i++)
-            {
-                for(var ii = 0; ii < data[0].Length; ii++)
-                    data[i][ii] = lists[ii][i];
-            }
-            return data;
-        }
+		public static double[][] Normalize(double[][] values, double min, double max)
+		{
+			var data = (double[][])values.Clone();
+			var lists = new List<List<double>>();
 
-        public static double[] Normalize(double[] list, double min, double max)
-        {
-            var enumerable = list as double[] ?? list.ToArray();
-            var valueMax = enumerable.Max();
-            var valueMin = enumerable.Min();
-            var valueRange = valueMax - valueMin;
-            var scaleRange = max - min;
+			for (var i = 0; i < data[0].Length; i++)
+			{
+				lists.Add(new List<double>());
+				for (var ii = 0; ii < data.Length; ii++)
+				{
+					var value = data[ii][i];
+					lists[i].Add(value);
+				}
+			}
 
-            var result = enumerable.Select(i => ((scaleRange * (i - valueMin)) / valueRange) + min).ToArray();
-            return NaN(result, 0);
-        }
+			for (var i = 0; i < lists.Count; i++)
+				lists[i] = ((double[])Normalize(lists[i].ToArray(), min, max).Clone()).ToList();
 
-        private static double[] NaN(double[] values, double set)
-        {
-            var result = new List<double>();
-            foreach(var value in values)
-            {
+			for (var i = 0; i < data.Length; i++)
+			{
+				for (var ii = 0; ii < data[0].Length; ii++)
+					data[i][ii] = lists[ii][i];
+			}
+			return data;
+		}
+
+		public static double[] Normalize(double[] list, double min, double max)
+		{
+			var enumerable = list as double[] ?? list.ToArray();
+			var valueMax = enumerable.Max();
+			var valueMin = enumerable.Min();
+			var valueRange = valueMax - valueMin;
+			var scaleRange = max - min;
+
+			var result = enumerable.Select(i => ((scaleRange * (i - valueMin)) / valueRange) + min).ToArray();
+			return NaN(result, 0);
+		}
+
+		private static double[] NaN(double[] values, double set)
+		{
+			var result = new List<double>();
+			foreach (var value in values)
+			{
 #pragma warning disable
-                if(value != value) //NaN check
+				if (value != value) //NaN check
 #pragma warning restore
-                    result.Add(set);
-                else
-                    result.Add(value);
-            }
+					result.Add(set);
+				else
+					result.Add(value);
+			}
 
-            return result.ToArray();
-        }
+			return result.ToArray();
+		}
 
-        #endregion
+		#endregion
 
-    }
+	}
 }
