@@ -34,7 +34,6 @@ namespace Impromptu.Messaging.MongoDB
 
 		public T Pop<T>(string key)
 		{
-
 			var docs = MessageQueue.AsQueryable().Where(item => item.Key == key).OrderBy(item => item.Id).Take(1).ToList();
 
 			DataType doc = null;
