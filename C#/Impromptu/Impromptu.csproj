@@ -123,6 +123,7 @@
     <Compile Include="Messaging\MongoDB\MongoBase.cs" />
     <Compile Include="Messaging\MongoDB\Queue.cs" />
     <Compile Include="Messaging\MongoDB\DataType.cs" />
+    <Compile Include="Collection\MemoryCache.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
