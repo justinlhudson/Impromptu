@@ -9,9 +9,34 @@ namespace Impromptu.Utilities
 	{
 		#region Public Static Methods
 
-		public static string DateNoTime(this DateTime dateTime)
+		public static DateTime ZeroTime(this DateTime dateTime)
 		{
-			return dateTime.Subtract(new TimeSpan(0, dateTime.Hour, dateTime.Minute, dateTime.Second, dateTime.Millisecond)).ToString("d");
+			return new DateTime(dateTime.Year, dateTime.Month, dateTime.Day, 0, 0, 0);
+		}
+
+		public static bool WithinDays(this DateTime dateTime, DateTime check, uint days)
+		{
+			return dateTime >= check.AddDays(-1 * days) && dateTime < check.AddDays(days);
+		}
+
+		public static DateTime AddBusinessDays(this DateTime current, int days)
+		{
+			var sign = System.Math.Sign(days);
+			var unsignedDays = System.Math.Abs(days);
+			for (var i = 0; i < unsignedDays; i++)
+			{
+				do
+				{
+					current = current.AddDays(sign);
+				} while (current.DayOfWeek == DayOfWeek.Saturday ||
+						 current.DayOfWeek == DayOfWeek.Sunday);
+			}
+			return current;
+		}
+
+		public static string DateString(this DateTime dateTime)
+		{
+			return dateTime.ToString("d");
 		}
 
 		public static DateTime LastWeekDay(this DateTime dateTime)
