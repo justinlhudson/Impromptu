@@ -9,6 +9,22 @@ namespace Impromptu.Utilities
 	{
 		#region Public Static Methods
 
+		public static string Fill(this string source, uint length)
+		{
+			if (!string.IsNullOrEmpty(source))
+			{
+				if (source.Length > length)
+					source = source.Remove((int)length);
+				else
+				{
+					var count = (length - source.Length);
+					for (var i = 0; i <= count; i++)
+						source += " ";  //fill
+				}
+			}
+			return source;
+		}
+
 		public static DateTime ZeroTime(this DateTime dateTime)
 		{
 			return new DateTime(dateTime.Year, dateTime.Month, dateTime.Day, 0, 0, 0);
