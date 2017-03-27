@@ -109,6 +109,19 @@ namespace Impromptu.Utilities
 			return result.Cast<T>();
 		}
 
+		public static T StandardDeviation<T>(this IEnumerable<T> source)
+		{
+			return source.StandardDeviation(0, source.Count());
+		}
+
+		public static T StandardDeviation<T>(this IEnumerable<T> source, int start, int end)
+		{
+			T mean = source.Mean(start, end);
+			dynamic variance = source.Variance(mean, start, end);
+
+			return System.Math.Sqrt(Convert.ToDouble(variance));
+		}
+
 		public static double[][] Normalize(double[][] values, double min, double max)
 		{
 			var data = (double[][])values.Clone();
