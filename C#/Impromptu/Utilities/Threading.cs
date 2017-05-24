@@ -8,13 +8,15 @@ namespace Impromptu.Utilities
 {
 	public static class Threading
 	{
-		public static ParallelOptions ParallelOptionsDefault()
+		public static ParallelOptions ParallelOptionsDefault(int max = int.MaxValue)
 		{
 			var maxDegreeOfParallelism = (int)Convert.ToInt16((Environment.ProcessorCount > 1 ? Environment.ProcessorCount * 0.75 : 1));
 
 			var overrideMaxDegreeOfParallelism = ConfigurationManager.AppSettings["MaxDegreeOfParallelism"];
 			if (!string.IsNullOrEmpty(overrideMaxDegreeOfParallelism))
 				maxDegreeOfParallelism = (int)Convert.ToInt64(overrideMaxDegreeOfParallelism);
+
+			maxDegreeOfParallelism = System.Math.Min(maxDegreeOfParallelism, max);
 
 			return new ParallelOptions()
 			{ MaxDegreeOfParallelism = maxDegreeOfParallelism };

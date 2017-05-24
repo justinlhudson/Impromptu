@@ -7,7 +7,7 @@ namespace Impromptu.Messaging.MongoDB
 	{
 
 		private readonly IMongoDatabase _db;
-		private string _collection = "MessageQueue";
+		private string _collection = "_MessageQueue";
 
 		public MongoBase(string connection, long db = 0) // defaults
 		{

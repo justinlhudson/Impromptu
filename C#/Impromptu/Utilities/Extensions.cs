@@ -9,6 +9,21 @@ namespace Impromptu.Utilities
 	{
 		#region Public Static Methods
 
+
+		public static List<string> RemoveUntil(this List<string> items, string match)
+		{
+			var result = new List<string>();
+			var flag = false;
+			foreach (var item in items)
+			{
+				if (match == item)
+					flag = true;
+				if (flag)
+					result.Add(item);
+			}
+			return result.ToList();
+		}
+
 		public static string Fill(this string source, uint length)
 		{
 			if (!string.IsNullOrEmpty(source))
@@ -30,9 +45,14 @@ namespace Impromptu.Utilities
 			return new DateTime(dateTime.Year, dateTime.Month, dateTime.Day, 0, 0, 0);
 		}
 
-		public static bool WithinDays(this DateTime dateTime, DateTime check, uint days)
+		public static bool WithinDays(this DateTime dateTime, DateTime check, int days)
 		{
 			return dateTime >= check.AddDays(-1 * days) && dateTime < check.AddDays(days);
+		}
+
+		public static bool WithinBusinessDays(this DateTime dateTime, DateTime check, int days)
+		{
+			return dateTime >= check.AddBusinessDays(-1 * days) && dateTime < check.AddDays(days);
 		}
 
 		public static DateTime AddBusinessDays(this DateTime current, int days)
