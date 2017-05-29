@@ -8,18 +8,23 @@ namespace Impromptu.Utilities
 {
 	public static class Threading
 	{
-		public static ParallelOptions ParallelOptionsDefault(int max = int.MaxValue)
+		public static ParallelOptions ParallelOptionsDefault(int max = -1)  //-1 means let system decide, 0 by # processors, > 0 manual set
 		{
-			var maxDegreeOfParallelism = (int)Convert.ToInt16((Environment.ProcessorCount > 1 ? Environment.ProcessorCount * 0.75 : 1));
+			if (max >= 0)
+			{
+				var maxDegreeOfParallelism = (int)Convert.ToInt16((Environment.ProcessorCount > 1 ? Environment.ProcessorCount : 1));
 
-			var overrideMaxDegreeOfParallelism = ConfigurationManager.AppSettings["MaxDegreeOfParallelism"];
-			if (!string.IsNullOrEmpty(overrideMaxDegreeOfParallelism))
-				maxDegreeOfParallelism = (int)Convert.ToInt64(overrideMaxDegreeOfParallelism);
+				var overrideMaxDegreeOfParallelism = ConfigurationManager.AppSettings["MaxDegreeOfParallelism"];
+				if (!string.IsNullOrEmpty(overrideMaxDegreeOfParallelism))
+					maxDegreeOfParallelism = (int)Convert.ToInt64(overrideMaxDegreeOfParallelism);
 
-			maxDegreeOfParallelism = System.Math.Min(maxDegreeOfParallelism, max);
+				if (max > 0)
+					maxDegreeOfParallelism = max;
 
-			return new ParallelOptions()
-			{ MaxDegreeOfParallelism = maxDegreeOfParallelism };
+				return new ParallelOptions()
+				{ MaxDegreeOfParallelism = maxDegreeOfParallelism };
+			}
+			return new ParallelOptions();
 		}
 
 		public static bool TryExecute(TimeSpan timeout, Action action, bool abort = true, bool surpressExceptions = false)
