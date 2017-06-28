@@ -8,7 +8,7 @@ namespace Impromptu.Utilities
 {
 	public static class Threading
 	{
-		public static ParallelOptions ParallelOptionsDefault(int max = -1)  //-1 means let system decide, 0 by # processors, > 0 manual set
+		public static ParallelOptions ParallelOptionsDefault(int max = 0)  //-1 means let system decide, 0 by # processors, > 0 manual set
 		{
 			if (max >= 0)
 			{
