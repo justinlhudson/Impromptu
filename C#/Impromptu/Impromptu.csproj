@@ -74,20 +74,20 @@
       <HintPath>..\..\..\..\Bitbucket\development\StockMarket\StockAnalyzer\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="StackExchange.Redis.Extensions.Core">
-      <HintPath>..\..\..\..\Bitbucket\development\StockAnalyzer\packages\StackExchange.Redis.Extensions.Core.2.2.0\lib\net45\StackExchange.Redis.Extensions.Core.dll</HintPath>
+    <Reference Include="StackExchange.Redis">
+      <HintPath>..\..\..\..\Bitbucket\development\StockAnalyzer\packages\StackExchange.Redis.1.2.6\lib\net45\StackExchange.Redis.dll</HintPath>
     </Reference>
     <Reference Include="MongoDB.Bson">
-      <HintPath>..\..\..\..\Bitbucket\development\StockAnalyzer\packages\MongoDB.Bson.2.4.4\lib\net45\MongoDB.Bson.dll</HintPath>
+      <HintPath>..\packages\MongoDB.Bson.2.4.4\lib\net45\MongoDB.Bson.dll</HintPath>
     </Reference>
-    <Reference Include="StackExchange.Redis">
-      <HintPath>..\..\..\..\Bitbucket\development\StockAnalyzer\packages\StackExchange.Redis.1.2.4\lib\net45\StackExchange.Redis.dll</HintPath>
+    <Reference Include="StackExchange.Redis.Extensions.Core">
+      <HintPath>..\packages\StackExchange.Redis.Extensions.Core.2.4.0\lib\net45\StackExchange.Redis.Extensions.Core.dll</HintPath>
     </Reference>
     <Reference Include="MongoDB.Driver.Core">
-      <HintPath>..\..\..\..\Bitbucket\development\StockAnalyzer\packages\MongoDB.Driver.Core.2.4.4\lib\net45\MongoDB.Driver.Core.dll</HintPath>
+      <HintPath>..\packages\MongoDB.Driver.Core.2.4.4\lib\net45\MongoDB.Driver.Core.dll</HintPath>
     </Reference>
     <Reference Include="MongoDB.Driver">
-      <HintPath>..\..\..\..\Bitbucket\development\StockAnalyzer\packages\MongoDB.Driver.2.4.4\lib\net45\MongoDB.Driver.dll</HintPath>
+      <HintPath>..\packages\MongoDB.Driver.2.4.4\lib\net45\MongoDB.Driver.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -127,6 +127,7 @@
     <Compile Include="Messaging\MongoDB\Queue.cs" />
     <Compile Include="Messaging\MongoDB\DataType.cs" />
     <Compile Include="Collection\MemoryCache.cs" />
+    <Compile Include="IO\SerialPort.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -165,5 +166,6 @@
     <Folder Include="Messaging\Redis\" />
     <Folder Include="Messaging\Memory\" />
     <Folder Include="Messaging\MongoDB\" />
+    <Folder Include="IO\" />
   </ItemGroup>
 </Project>

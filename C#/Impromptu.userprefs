@@ -1,16 +1,13 @@
 ﻿<Properties GitUserInfo="UsingGIT">
-  <MonoDevelop.Ide.Workbench>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State name="__root__">
-          <Node name="Impromptu" expanded="True">
-            <Node name="Impromptu" expanded="True">
-              <Node name="Packages" selected="True" />
-            </Node>
-          </Node>
-        </State>
-      </Pad>
-    </Pads>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Impromptu/IO/SerialPort.cs">
+    <Files>
+      <File FileName="Impromptu/Utilities/Threading.cs" Line="1" Column="1" />
+      <File FileName="Impromptu/MachineLearning/Discretizer.cs" Line="1" Column="1" />
+      <File FileName="Impromptu/DesignPattern/PublisherSubscriber.cs" Line="1" Column="1" />
+      <File FileName="Impromptu/DesignPattern/Command.cs" Line="1" Column="1" />
+      <File FileName="Impromptu/Utilities/Copy.cs" Line="4" Column="11" />
+      <File FileName="Impromptu/IO/SerialPort.cs" Line="26" Column="57" />
+    </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
