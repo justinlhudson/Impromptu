@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 #endregion
 namespace Impromptu.Utilities
@@ -33,6 +34,14 @@ namespace Impromptu.Utilities
         #endregion
 
         #region Public Methods
+
+        public T[,] JaggedTo2D(T[][] source)
+        {
+            return new[] { new T[source.Length, source[0].Length] }
+                .Select(_ => new { x = _, y = source.Select((a, ia) => a.Select((b, ib) => _[ia, ib] = b).Count()).Count() })
+                .Select(_ => _.x)
+                .First();
+        }
 
         public byte[] ToByteArray(T[] value)
         {
