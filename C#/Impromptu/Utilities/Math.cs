@@ -83,7 +83,13 @@ namespace Impromptu.Utilities
 			return temp.Variance(temp.Mean(), 0, count);
 		}
 
-		public static T Variance<T>(this IEnumerable<T> source, T mean, int start, int end)
+        public static bool NearlyEqual(double f1, double f2)
+        {
+            // Equal if they are within 0.00001 of each other
+            return System.Math.Abs(Convert.ToDouble(f1) - Convert.ToDouble(f2)) < 0.0000001;
+        }
+
+        public static T Variance<T>(this IEnumerable<T> source, T mean, int start, int end)
 		{
 			T[] temp = source.ToArray();
 
