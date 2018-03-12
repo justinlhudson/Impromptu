@@ -1,5 +1,5 @@
 ﻿<Properties GitUserInfo="UsingGIT">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Impromptu/Utilities/Conversion.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Impromptu/Utilities/Math.cs">
     <Files>
       <File FileName="Impromptu/Utilities/Threading.cs" Line="1" Column="1" />
       <File FileName="Impromptu/MachineLearning/Discretizer.cs" Line="1" Column="1" />
@@ -11,6 +11,7 @@
       <File FileName="Impromptu/Utilities/Helper.cs" Line="1" Column="1" />
       <File FileName="Impromptu/Utilities/Configuration.cs" Line="1" Column="1" />
       <File FileName="Impromptu/Utilities/Conversion.cs" Line="1" Column="1" />
+      <File FileName="Impromptu/Utilities/Math.cs" Line="22" Column="9" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

@@ -2,13 +2,18 @@
 using System.Linq;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace Impromptu.Utilities
 {
 	public static class Extensions
 	{
 		#region Public Static Methods
-
+        static public string RemoveBetween(this string input, char begin, char end)
+        {
+            Regex regex = new Regex(string.Format("\\{0}.*?\\{1}", begin, end));
+            return regex.Replace(input, string.Empty);
+        }
 
 		public static List<string> RemoveUntil(this List<string> items, string match)
 		{

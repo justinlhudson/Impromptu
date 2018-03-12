@@ -8,6 +8,17 @@ namespace Impromptu.Utilities
 	{
 
 		#region Public Static Methods
+        // 0 - 360 degrees
+        public static float AngleDifference(double a1, double a2)
+        {
+            float distance = (float)(System.Math.Abs(a1 - a2) % 360);
+            float distance_signed = distance > 180 ? 360 - distance : distance;
+
+            //calculate sign 
+            int sign = (a1 - a2 >= 0 && a1 - a2 <= 180) || (a1 - a2 <= -180 && a1 - a2 >= -360) ? 1 : -1;
+            distance_signed *= sign;
+            return distance_signed;
+        }
 
 		public static double Difference<T>(T v1, T v2)
 		{
